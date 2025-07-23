@@ -1,21 +1,21 @@
 /*
  @C:\Web_649\Sql\End_Conv\Oracle\5102_DFSSTPO_Imposto_Saida.SQL
 
- DescriÁ„o:
- Procedure para geraÁ„o dos impostos e valor final das notas de saÌda e dos valores contabÈis
+ Descri√ß√£o:
+ Procedure para gera√ß√£o dos impostos e valor final das notas de sa√≠da e dos valores contab√©is
 
- Par‚metros
+ Par√¢metros
 
- P_EMPRESA     - CÛdigo da empresa
- P_PRODUTO     - CÛdigo de ·rvore do prduto(CDARVPROD)
- P_INSCESTA    - InscriÁ„o estadual do lanÁamento
- P_TIPOOPER    - Tipo de operaÁ„o do lanÁamento
- P_CLIENTE     - CÛdigo do destinat·rio da nota (CDCLIENTE, CDFORNECED ou CDFILIAL)
- P_FILIAL      - CÛdigo da filial do lanÁamento (CDFILIAL)
- P_LANCTONF    - N˙mero do lanÁamento (NRLANCTONF)
- P_INIVALID    - Data de saÌda do lanÁamento
+ P_EMPRESA     - C√≥digo da empresa
+ P_PRODUTO     - C√≥digo de √°rvore do prduto(CDARVPROD)
+ P_INSCESTA    - Inscri√ß√£o estadual do lan√ßamento
+ P_TIPOOPER    - Tipo de opera√ß√£o do lan√ßamento
+ P_CLIENTE     - C√≥digo do destinat√°rio da nota (CDCLIENTE, CDFORNECED ou CDFILIAL)
+ P_FILIAL      - C√≥digo da filial do lan√ßamento (CDFILIAL)
+ P_LANCTONF    - N√∫mero do lan√ßamento (NRLANCTONF)
+ P_INIVALID    - Data de sa√≠da do lan√ßamento
  P_VRNOTAFISC  - Valor final da nota                           
- P_LANCESTQ    - N˙mero do lanÁamento de estoque
+ P_LANCESTQ    - N√∫mero do lan√ßamento de estoque
  P_CDOPERADOR  - Operador gravado na LANCTOESTOQ
 
  raise_application_error(-20501, '' , True);
@@ -102,7 +102,7 @@ IS
    V_IDDEVOLIST     VARCHAR2(01);
    V_IDUTLLISTORI   VARCHAR2(01);
 
-   /*ENCARGO CALCULADO PELO VALOR CADASTRADO POR PESO DO PRODUTO CASO UTILIZE CALCULO DO VALOR DO FRETE PARAMETRIZADO PARA O TIPO DE OPERA«√O*/
+   /*ENCARGO CALCULADO PELO VALOR CADASTRADO POR PESO DO PRODUTO CASO UTILIZE CALCULO DO VALOR DO FRETE PARAMETRIZADO PARA O TIPO DE OPERA√á√ÉO*/
    V_IDCALCVALFRETE VARCHAR2(01);
    V_VALFRETEPROD   NUMBER;
    V_ENCARGOINFO    NUMBER;
@@ -241,7 +241,7 @@ IS
 
    V_CDSITUCRT         VARCHAR2(01);
    V_CDSIMPLESNACIONAL VARCHAR2(5);
-   V_RBT12             FLOAT; --RECEITA BRUTA TOTAL DOS ⁄LTIMOS 12 MESES
+   V_RBT12             FLOAT; --RECEITA BRUTA TOTAL DOS √öLTIMOS 12 MESES
    V_RBA               FLOAT; --RECEITA BRUTA ACUMULADA
    V_VRSUBLIMITESN     FLOAT;
    V_VRALIQSIMPLES     FLOAT;
@@ -251,7 +251,7 @@ IS
    V_CDFAIXA           VARCHAR2(5);
    V_ESTORNOCANC       VARCHAR2(01);
 
-   /*AlÌquota do imposto que possui diferencial de alÌquota*/
+   /*Al√≠quota do imposto que possui diferencial de al√≠quota*/
    V_DIFALIQ           FLOAT;
    V_IDCALCDIFAL       VARCHAR2(01);
 
@@ -382,7 +382,7 @@ IS
    V_CDENQLEGALIPI     VARCHAR2(03);
    V_CDCEST            VARCHAR2(09);
 
-   /* vari·veis para geraÁ„o de entrada no estoque (filial agente de terceiraÁ„o */
+   /* vari√°veis para gera√ß√£o de entrada no estoque (filial agente de terceira√ß√£o */
    V_CDFILIAGENT       VARCHAR2(04);
    V_BOLANESTENTRAG    BOOLEAN := TRUE;
    V_NRLANESTENTRAG    NOVOCODIGO.NRSEQUENCIAL%TYPE;
@@ -448,7 +448,7 @@ IS
    V_IDVERLEIAUTENFE   VARCHAR2(04);
    V_MAJORAOUREDUZ     VARCHAR2(01);
 
-   /* Vari·veis para geraÁ„o dos encargos de acordo com os impostos relacionados na nota fiscal de origem(importaÁ„o de XML) */
+   /* Vari√°veis para gera√ß√£o dos encargos de acordo com os impostos relacionados na nota fiscal de origem(importa√ß√£o de XML) */
    V_VRENCARGOIMPXML NUMBER;
    V_VRIMPENCXMLORIG NUMBER;
    V_UPDENCIMPXML    VARCHAR2(01);
@@ -470,7 +470,7 @@ IS
 
    V_IDENDEMISTPOPFIL VARCHAR2(01);
 
-   /* Vari·veis prestaÁ„o de serviÁo */
+   /* Vari√°veis presta√ß√£o de servi√ßo */
    V_CDPAISSERV      VARCHAR2(04);
    V_SGESTADOSERV    VARCHAR2(02);
    V_CDMUNICIPIOSERV VARCHAR2(04);
@@ -505,7 +505,7 @@ IS
    V_CDRESTST        VARCHAR2(20);
    V_CDNATUREC       VARCHAR2(10);
    
-   /*vari·veis mensagem ICMS 60*/
+   /*vari√°veis mensagem ICMS 60*/
    V_VRBCITENTR      FLOAT;
    V_VRIMPITENTR     FLOAT;
 
@@ -513,7 +513,7 @@ IS
    V_EXISTEENCARGO   NUMBER;
    V_CDTIPOOPERBONIF VARCHAR2(02);
 
-   --VARI¡VEIS PARA ATUALIZAR ESTOQUE POR CFOP
+   --VARI√ÅVEIS PARA ATUALIZAR ESTOQUE POR CFOP
    V_ATUPORCFOP    VARCHAR2(01);
    V_CFOPTPOPER    FLOAT;
    V_CFOPATUEST    FLOAT;
@@ -562,7 +562,7 @@ IS
    V_VRCALCULADO FLOAT;   
 BEGIN
 
---VARI¡VEIS COM A CHAVE PARA AS TABELAS TEMPOR¡RIAS
+--VARI√ÅVEIS COM A CHAVE PARA AS TABELAS TEMPOR√ÅRIAS
 
    V_ALIQTEMP := P_FILIAL||P_LANCTONF;/* ALIQUOTA */
    V_INCITEMP := P_FILIAL||P_LANCTONF;/* INCIDENCIA */
@@ -832,7 +832,7 @@ BEGIN
    END IF;
 
    BEGIN
-      SELECT TRANSLATE(SUBSTR('Devolver as embalagens vazias no seguinte endereÁo: ' || 
+      SELECT TRANSLATE(SUBSTR('Devolver as embalagens vazias no seguinte endere√ßo: ' || 
              PRE.DSPOSTORECEMB ||
              ', ' || PRE.DSENDERECEMB || 
              CASE NVL(PRE.DSCOMPENDERECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE ', ' || PRE.DSCOMPENDERECEMB END ||
@@ -842,7 +842,7 @@ BEGIN
              ', ' || E.SGESTADO ||
              ', ' || P.NMPAIS ||
              CASE NVL(PRE.NRTELERECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. Telefone: ' || PRE.NRTELERECEMB END ||
-             CASE NVL(PRE.NRFAXRECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. FAX: ' || PRE.NRFAXRECEMB END, 1, 255), '·‚„‰ÊËÔÈÏÎÌÓÁÂÒÚÛÙˆı‡¯˙¸˚˘˝¡¬√ƒ∆»œ…ÃÀÕŒ≈—“”‘÷’¿ÿ⁄‹€Ÿ›«', 'aaaaaeieieiicanoooooaouuuuyAAAAAEIEIEIIANOOOOOAOUUUUYC') AS DSENDEDEVOEMBA
+             CASE NVL(PRE.NRFAXRECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. FAX: ' || PRE.NRFAXRECEMB END, 1, 255), '√°√¢√£√§√¶√®√Ø√©√¨√´√≠√Æ√ß√•√±√≤√≥√¥√∂√µ√†√∏√∫√º√ª√π√Ω√Å√Ç√É√Ñ√Ü√à√è√â√å√ã√ç√é√Ö√ë√í√ì√î√ñ√ï√Ä√ò√ö√ú√õ√ô√ù√á', 'aaaaaeieieiicanoooooaouuuuyAAAAAEIEIEIIANOOOOOAOUUUUYC') AS DSENDEDEVOEMBA
         INTO V_DSENDEDEVOEMBA
         FROM NOTAFISCAL N JOIN ITEMPRODUTO I ON (N.CDFILIAL = I.CDFILIAL) AND
                                                 (N.NRLANCTONF = I.NRLANCTONF)
@@ -868,7 +868,7 @@ BEGIN
                            FROM DADOSADIC
                           WHERE (CDFILIAL = P_FILIAL)
                             AND (NRLANCTONF = P_LANCTONF)
-                            AND (DSDADOADIC LIKE TRANSLATE(SUBSTR('Devolver as embalagens vazias no seguinte endereÁo: ' || 
+                            AND (DSDADOADIC LIKE TRANSLATE(SUBSTR('Devolver as embalagens vazias no seguinte endere√ßo: ' || 
                                                  PRE.DSPOSTORECEMB ||
                                                  ', ' || PRE.DSENDERECEMB || 
                                                  CASE NVL(PRE.DSCOMPENDERECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE ', ' || PRE.DSCOMPENDERECEMB END ||
@@ -878,12 +878,12 @@ BEGIN
                                                  ', ' || E.SGESTADO ||
                                                  ', ' || P.NMPAIS ||
                                                  CASE NVL(PRE.NRTELERECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. Telefone: ' || PRE.NRTELERECEMB END ||
-                                                 CASE NVL(PRE.NRFAXRECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. FAX: ' || PRE.NRFAXRECEMB END, 1, 255), '·‚„‰ÊËÔÈÏÎÌÓÁÂÒÚÛÙˆı‡¯˙¸˚˘˝¡¬√ƒ∆»œ…ÃÀÕŒ≈—“”‘÷’¿ÿ⁄‹€Ÿ›«', 'aaaaaeieieiicanoooooaouuuuyAAAAAEIEIEIIANOOOOOAOUUUUYC') || '%'));
+                                                 CASE NVL(PRE.NRFAXRECEMB, '!X!X!') WHEN '!X!X!' THEN '' ELSE '. FAX: ' || PRE.NRFAXRECEMB END, 1, 255), '√°√¢√£√§√¶√®√Ø√©√¨√´√≠√Æ√ß√•√±√≤√≥√¥√∂√µ√†√∏√∫√º√ª√π√Ω√Å√Ç√É√Ñ√Ü√à√è√â√å√ã√ç√é√Ö√ë√í√ì√î√ñ√ï√Ä√ò√ö√ú√õ√ô√ù√á', 'aaaaaeieieiicanoooooaouuuuyAAAAAEIEIEIIANOOOOOAOUUUUYC') || '%'));
    EXCEPTION
       WHEN NO_DATA_FOUND THEN
          V_DSENDEDEVOEMBA := NULL;
       WHEN TOO_MANY_ROWS THEN
-         RAISE_APPLICATION_ERROR(-20501, 'OperaÁ„o bloqueada. Existem mais de um posto de recolhimento de embalagens cadastradas no sistema.', TRUE);
+         RAISE_APPLICATION_ERROR(-20501, 'Opera√ß√£o bloqueada. Existem mais de um posto de recolhimento de embalagens cadastradas no sistema.', TRUE);
    END;
      
    IF (V_DSENDEDEVOEMBA IS NOT NULL) THEN
@@ -937,7 +937,7 @@ BEGIN
    END IF;
    --GRAVA CR NOS DADOS ADICIONAIS
 
-   --VARI¡VEIS PARA CONSULTA DE ALÕQUOTA, INCID NCIA, CFOP
+   --VARI√ÅVEIS PARA CONSULTA DE AL√çQUOTA, INCID√äNCIA, CFOP
    Begin
       SELECT NVL(IDENDCFOPFIL,w_I), CDEMPRESA,   CDINSCESTA
       INTO   V_IDENDCFOP,           V_CDEMPRESA, V_CDINSCESTA
@@ -1039,7 +1039,7 @@ BEGIN
       END IF;
    END IF;
 
-   /*DESTINAT¡RIO-REMETENTE DA NOTA*/
+   /*DESTINAT√ÅRIO-REMETENTE DA NOTA*/
    IF V_IDORIGDESTNF IS NULL THEN
       Begin
          SELECT IDORIGDESTOP
@@ -1322,7 +1322,7 @@ BEGIN
                                                      AND (DSDADOADIC LIKE I.DSMENSINSCESTAST || '%'))
                                 ORDER BY NRMENSINSCESTAST) LOOP
 
-         /*PREENCHE AS MENSAGENS ATRELADAS A INSCRICAO ESTADUAL DO SUBSTITUTO TRIBUT¡RIO*/
+         /*PREENCHE AS MENSAGENS ATRELADAS A INSCRICAO ESTADUAL DO SUBSTITUTO TRIBUT√ÅRIO*/
          INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, CDMENSAGEM, DSDADOADIC)
                         VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, C_MENSINSCESTAST.CDMENSAGEM, C_MENSINSCESTAST.DSMENSINSCESTAST);
 
@@ -1347,8 +1347,8 @@ BEGIN
 
    /*
    ROTINA PARA VERIFICAR AS NOTAS DO SISTEMA FACILITIES. NESTAS NOTAS O SISTEMA
-   N√O VERIFICAR¡ O PAIS, O ESTADO E NEM O MUNICÕPIO DO DESTINAT¡RIO DA NOTA FISCAL 
-   E SIM DO LOCAL DE ATENDIMENTO DAQUELA PRESTA«√O DE SERVI«O
+   N√ÉO VERIFICAR√Å O PAIS, O ESTADO E NEM O MUNIC√çPIO DO DESTINAT√ÅRIO DA NOTA FISCAL 
+   E SIM DO LOCAL DE ATENDIMENTO DAQUELA PRESTA√á√ÉO DE SERVI√áO
    */
    V_QTDREGFCT := 0;
    BEGIN
@@ -1380,12 +1380,12 @@ BEGIN
       V_MUNIDEST := V_CDMUNICIPIOFCT;
    END IF;
 
-   /* OperaÁ„o Presencial - Se considera endereÁo de destino igual ao endereÁo de origem */
+   /* Opera√ß√£o Presencial - Se considera endere√ßo de destino igual ao endere√ßo de origem */
    IF V_IDOPPRESENDDIF = 'N' THEN
       /*
-      QUANDO A OPERA«√O DA NOTA FISCAL FOR PRESENCIAL O SISTEMA USAR¡ COMO ENDERE«O
-      DE DESTINO O MESMO ENDERE«O DA ORIGEM. EST¡ CONDI«√O FOI NECESS¡RIA PARA ATENDER
-      A NOTA T…CNICA 2015/003
+      QUANDO A OPERA√á√ÉO DA NOTA FISCAL FOR PRESENCIAL O SISTEMA USAR√Å COMO ENDERE√áO
+      DE DESTINO O MESMO ENDERE√áO DA ORIGEM. EST√Å CONDI√á√ÉO FOI NECESS√ÅRIA PARA ATENDER
+      A NOTA T√âCNICA 2015/003
       */
       IF (V_IDPRESENCIAL = W_1) THEN
          V_PAISDEST := V_PAISORIG;
@@ -1406,7 +1406,7 @@ BEGIN
 
       IF (V_IDPRESENCIAL = W_1) THEN
 
-         -- Verificar identificador de endereÁo CFOP conforme operaÁ„o presencial
+         -- Verificar identificador de endere√ßo CFOP conforme opera√ß√£o presencial
          IF (NVL(V_IDORIGDESTNF, 'C') = 'C') THEN
             IF V_IDENDCFOPCLIPRES = w_I THEN
                Begin
@@ -1491,7 +1491,7 @@ BEGIN
       CONSULTA_GRUPOFISCAL(V_IDORIGDESTNF, V_CDORIGDESTNF, V_CDFILIEMIT, w_S, P_TIPOOPER, V_CDGRUPOFISC);
    END IF;
 
-   /*VERIFICA SE A NOTA UTILIZA DOCUMENTO DE ORIGEM E SE O TIPO DE OPERA«√O … DE ESTORNO DE CANCELAMENTO*/
+   /*VERIFICA SE A NOTA UTILIZA DOCUMENTO DE ORIGEM E SE O TIPO DE OPERA√á√ÉO √â DE ESTORNO DE CANCELAMENTO*/
    BEGIN
       SELECT IDOPERDEVONF,
              IDCONSPARFIS,
@@ -1758,26 +1758,26 @@ BEGIN
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF;
 
-   /* GRAVA INFORMA«’ES ADICIONAIS DO PRODUTO */
+   /* GRAVA INFORMA√á√ïES ADICIONAIS DO PRODUTO */
    V_IDPRODPERIG := 'N';
    FOR C_ITEMPRODINF IN (SELECT I.NRSEQITPROD,
                              P.IDPRODPERIG,
-                             TRANSLATE(P.DSINFADICPROD,  'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(P.DSINFADICPROD,  '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                          'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS DSINFADICPROD,
                              I.CDPRODUTO,
-                             TRANSLATE(INF.NRONU,         'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(INF.NRONU,         '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS NRONU,
-                             TRANSLATE(INF.NRRISCO,       'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(INF.NRRISCO,       '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS NRRISCO,
-                             TRANSLATE(G.NMGRUPO,         'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(G.NMGRUPO,         '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS NMGRUPO,
-                             TRANSLATE(INF.NRREGISTROANP, 'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(INF.NRREGISTROANP, '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS NRREGISTROANP,
-                             TRANSLATE(INF.DSREGISTROANP, 'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(INF.DSREGISTROANP, '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS DSREGISTROANP,
-                             TRANSLATE(INF.NMTECNICO,     'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(INF.NMTECNICO,     '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS NMTECNICO,
-                             TRANSLATE(I.DSINFADICPROD,   'äéöûü¡«…Õ”⁄¿»Ã“Ÿ¬ Œ‘€√’À‹œ÷—›Â·ÁÈÌÛ˙‡ËÏÚ˘‚ÍÓÙ˚„ıÎ¸ÔˆÒ˝ˇ',
+                             TRANSLATE(I.DSINFADICPROD,   '≈†≈Ω≈°≈æ≈∏√Å√á√â√ç√ì√ö√Ä√à√å√í√ô√Ç√ä√é√î√õ√É√ï√ã√ú√è√ñ√ë√ù√•√°√ß√©√≠√≥√∫√†√®√¨√≤√π√¢√™√Æ√¥√ª√£√µ√´√º√Ø√∂√±√Ω√ø',
                                                           'SZszYACEIOUAEIOUAEIOUAOEUIONYaaceiouaeiouaeiouaoeuionyy') AS DSINFADICPRODITEM
                         FROM ITEMPRODUTO I LEFT JOIN PRODUTO P ON (I.CDPRODUTO = P.CDPRODUTO)
                                            LEFT JOIN INFADICPROD INF ON (P.CDPRODUTO = INF.CDPRODUTO)
@@ -1818,7 +1818,7 @@ BEGIN
          END IF;
       END IF;
 
-      --ESSA CONDI«√O FOI COLOCADA APENAS PARA TIRAR O " | " NO FINAL DA VARI¡VEL
+      --ESSA CONDI√á√ÉO FOI COLOCADA APENAS PARA TIRAR O " | " NO FINAL DA VARI√ÅVEL
       IF (V_DSINFADICPROD IS NOT NULL) OR (TRIM(V_DSINFADICPROD) <> '') THEN
          IF (TRIM(SUBSTR(V_DSINFADICPROD, LENGTH(V_DSINFADICPROD)- 2, 3)) = '|') THEN
             V_DSINFADICPROD := TRIM(SUBSTR(V_DSINFADICPROD, 1, LENGTH(V_DSINFADICPROD) - 3));
@@ -1847,10 +1847,10 @@ BEGIN
    
    /* GRAVA MENSAGEM REFERENTE A PRODUTO PERIGOSO */
    IF V_IDPRODPERIG = 'S' THEN
-      V_MSGPRODPERIG := 'Declaro que os produtos perigosos est„o adequadamente ' ||
+      V_MSGPRODPERIG := 'Declaro que os produtos perigosos est√£o adequadamente ' ||
                         'classificados, embalados, identificados, e estivados ' ||
-                        'para suportar os riscos das operaÁıes de transporte e ' ||
-                        'que atendem ‡s exigÍncias da regulamentaÁ„o.';
+                        'para suportar os riscos das opera√ß√µes de transporte e ' ||
+                        'que atendem √†s exig√™ncias da regulamenta√ß√£o.';
       BEGIN
          SELECT COUNT(DSDADOADIC)
            INTO V_GRAVAMSGPRODPERIG
@@ -1874,14 +1874,14 @@ BEGIN
    DELETE FROM DADOSADIC
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF
-      AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+      AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
 
    DELETE FROM DADOSADIC
      WHERE CDFILIAL = P_FILIAL
        AND NRLANCTONF = P_LANCTONF
        AND DSDADOADIC LIKE 'Permite o aproveitamento do credito do ICMS no valor de R$ %';
 
--- ATUALIZA«√O DAS TABELAS DE NOTAFISCAL, ITEMPRODUTO E DADOS ADICIONAIS
+-- ATUALIZA√á√ÉO DAS TABELAS DE NOTAFISCAL, ITEMPRODUTO E DADOS ADICIONAIS
 
    IF NOT(P_TIPOOPER IN ('03','07','09','10','12')) AND (V_IDOPERDEVONF <> w_S) AND (V_IDNFAJUSTE <> w_S) OR
          ((V_IDNFAJUSTE = w_S) AND (V_IDCONSPARFIS = w_S)) THEN
@@ -1965,7 +1965,7 @@ BEGIN
 
             V_CFOPINFUSU := 'N';
             IF C_ITEMPRODUTO.CDCFOPINFUSU IS NULL THEN /*SE NAO HOUVER CFOP INFORMADO PELO USUARIO PARA O PRODUTO*/
-               /*SE A DESCRI«√O DO CFOP NAO TIVER SIDO INFORMADA PELO USUARIO O SISTEMA ASSUME A DESCRICAO DO CFOP DOS ITENS*/
+               /*SE A DESCRI√á√ÉO DO CFOP NAO TIVER SIDO INFORMADA PELO USUARIO O SISTEMA ASSUME A DESCRICAO DO CFOP DOS ITENS*/
                UPDATE NOTAFISCAL
                   SET DSCDFISOPENF = (SELECT MAX(DSCFOPTMP) FROM CFOPTEMP
                                      WHERE NRCFOPTEMP = V_CFOPTEMP)
@@ -2021,7 +2021,7 @@ BEGIN
             DELETE CSTTEMP
             WHERE NRCSTTEMP = V_CSTTEMP;
 
-      -- ATUALIZA«√O DA TABELA DE IMPOSTOS POR ITEM.
+      -- ATUALIZA√á√ÉO DA TABELA DE IMPOSTOS POR ITEM.
 
             DELETE ITEMPROIMPOS
             WHERE (CDFILIAL    = P_FILIAL)   AND
@@ -2041,7 +2041,7 @@ BEGIN
                   (NRSEQITPROD = C_ITEMPRODUTO.NRSEQITPROD);
 
             IF V_IMPOSINFUSU = 0 THEN
-            -- Verifica se h· grupo fiscal por servico
+            -- Verifica se h√° grupo fiscal por servico
                SELECT MAX(CDGRUPOFISC)
                INTO V_CDGRPFISCSV
                FROM SERVCLIE SC, SERVICO S
@@ -2052,7 +2052,7 @@ BEGIN
                      S.CDPRODUTO   = C_ITEMPRODUTO.CDPRODUTO;
 
                IF V_CDGRPFISCSV IS NULL THEN
-                  -- Verifica se h· grupo fiscal por cliente da filial
+                  -- Verifica se h√° grupo fiscal por cliente da filial
                   SELECT MAX(CDGRUPOFISC)
                   INTO V_CDGRPFISCSV
                   FROM CLIENFILIAL
@@ -2097,7 +2097,7 @@ BEGIN
                                           (IP.IDPRODNOTA = w_P)
                                     ORDER BY CDIMPOTEMP) LOOP
 
-                  -- Se o imposto È retido (valor NF) e se utiliza o valor de outro imposto como base de c·lculo
+                  -- Se o imposto √© retido (valor NF) e se utiliza o valor de outro imposto como base de c√°lculo
                   IF ((C_INCIDENCIA.IDTRATIMPTMP = 'R') AND (C_INCIDENCIA.CDIMPOBASERET IS NOT NULL)) THEN
                      V_VRIMPORELAC := 0;
 
@@ -2123,7 +2123,7 @@ BEGIN
                   V_VRADICALIQFECP := C_INCIDENCIA.VRADICALIQFECP;
                   V_CDBENEFFISCAL := NULL;
 
-   --integraÁ„o fiscal especifica com Compass_Argentina atraves da importaÁ„o de aliquota do imposto IBB
+   --integra√ß√£o fiscal especifica com Compass_Argentina atraves da importa√ß√£o de aliquota do imposto IBB
    --A aliquota de imposto 03(ibb) sera cadastrada na tabela paramintegraibb e tera prioridade sobre o
    -- cadastro de aliquota realizado em sistema
                   IF C_INCIDENCIA.CDIMPOTEMP = '03' THEN
@@ -2408,7 +2408,7 @@ BEGIN
                            V_ALIQUTMP := 0;
                         END IF;
 
-                        /*Verifica se o imposto de st (hj o sistema sÛ aceita o icms st)*/
+                        /*Verifica se o imposto de st (hj o sistema s√≥ aceita o icms st)*/
                         /*IMPOSTO DE SUBSTITUICAO TRIBUTARIA*/
                         V_CDIMPOSTRIB  := null;
                         V_IDVRIMPSTRIB := null;
@@ -2476,21 +2476,21 @@ BEGIN
                                       FROM DADOSADIC
                                      WHERE CDFILIAL = P_FILIAL
                                        AND NRLANCTONF = P_LANCTONF
-                                       AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+                                       AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
 
                                     IF V_EXISTDSDADOSADIC = 0 THEN
 
                                        /*PREENCHE AS MENSAGENS ATRELADAS A INSCRICAO ESTADUAL*/
                                        INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                                                      VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99'))));
+                                                      VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99'))));
 
                                        V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
                                     ELSE
                                        UPDATE DADOSADIC
-                                          SET DSDADOADIC = 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')))
+                                          SET DSDADOADIC = 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')))
                                          WHERE CDFILIAL = P_FILIAL
                                            AND NRLANCTONF = P_LANCTONF
-                                           AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+                                           AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
                                     END IF;
                                  END IF;
                               END IF;
@@ -2524,21 +2524,21 @@ BEGIN
                                    FROM DADOSADIC
                                   WHERE CDFILIAL = P_FILIAL
                                     AND NRLANCTONF = P_LANCTONF
-                                    AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+                                    AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
 
                                  IF V_EXISTDSDADOSADIC = 0 THEN
 
                                     /*PREENCHE AS MENSAGENS ATRELADAS A INSCRICAO ESTADUAL*/
                                     INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                                                   VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99'))));
+                                                   VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99'))));
 
                                     V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
                                  ELSE
                                     UPDATE DADOSADIC
-                                       SET DSDADOADIC = 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')))
+                                       SET DSDADOADIC = 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSSTRETIDO, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSSTRETIDO, 2), '9999999999999.99')))
                                      WHERE CDFILIAL = P_FILIAL
                                        AND NRLANCTONF = P_LANCTONF
-                                       AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+                                       AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
                                  END IF;
                               END IF;
                            END IF;
@@ -2770,7 +2770,7 @@ BEGIN
                      V_CDIMPOSTRIB := V_CDIMPOSTRIB||C_ICMSST.CDIMPOSTO||'_';
                   END LOOP;
 
-                  -- UTILIZA O PR”PRIO VALOR DO IMPOSTO NA SUA BASE DE C¡LCULO (IMPOSTO POR DENTRO)
+                  -- UTILIZA O PR√ìPRIO VALOR DO IMPOSTO NA SUA BASE DE C√ÅLCULO (IMPOSTO POR DENTRO)
                   BEGIN
                      SELECT NVL(MAX(IDUTILPVRIMPBC), 'N')
                        INTO V_IDUTILPVRIMPBC
@@ -2796,7 +2796,7 @@ BEGIN
                   END IF;
                   V_BCSEMREDUCAO := V_LIQUIITEM;
 
-                  IF (V_VRIMPOSTOREP IS NOT NULL) AND (V_VRIMPOSTOREP > 0) THEN  /* Caso esteja cadastrao Valor a ser Repassado, a base de C·lculo e o valor do imposto È calculado de acordo com este cadastro */
+                  IF (V_VRIMPOSTOREP IS NOT NULL) AND (V_VRIMPOSTOREP > 0) THEN  /* Caso esteja cadastrao Valor a ser Repassado, a base de C√°lculo e o valor do imposto √© calculado de acordo com este cadastro */
                      /*IF (V_VRIMPOSTOREP > 0) THEN*/
                         V_IMPOSTOIT  := (C_ITEMPRODUTO.QTITEMPROD * V_VRIMPOSTOREP);
                         V_BASECALCTO := (C_ITEMPRODUTO.VRTOTAITEM * (V_IMPOSTOIT)) / (C_ITEMPRODUTO.VRTOTAITEM * (V_ALIQUTMP/100));
@@ -3072,7 +3072,7 @@ BEGIN
                      END IF;
                   END IF;
 
-                  /* Rotina para calcular o ICMS ST considerando % carga tribut·ria mÈdia */
+                  /* Rotina para calcular o ICMS ST considerando % carga tribut√°ria m√©dia */
                   V_IDIMPSTCARGTRIB := 'N';
 
                   IF V_CDIMPOSTRIB IS NOT NULL THEN
@@ -3234,8 +3234,8 @@ BEGIN
                            V_PERDIFERE    := ROUND(V_VRPERDIFERE, 2);
                            V_IMPOSTOOPERA := ROUND(V_IMPOSTOIT, 2);
                            /*
-                              Foi comentado este c·lculo pois ao implement·-lo de acordo com a resoluÁ„o n∫13 de 14 de fevereiro de 2019
-                              a sefaz passou a rejeitar as notas com a rejeiÁ„o 352 (Rejeicao: Valor do ICMS Diferido no CST=51 difere do
+                              Foi comentado este c√°lculo pois ao implement√°-lo de acordo com a resolu√ß√£o n¬∫13 de 14 de fevereiro de 2019
+                              a sefaz passou a rejeitar as notas com a rejei√ß√£o 352 (Rejeicao: Valor do ICMS Diferido no CST=51 difere do
                               produto Valor ICMS Operacao e percentual diferimento)
                            */
                            --IF (V_CDPAISEMIT = '0055') AND (V_SGESTADOEMIT = 'RJ') THEN
@@ -3585,7 +3585,7 @@ BEGIN
                   END IF;
                END IF;
 
-               END LOOP; --FIM DO LOOP DAS INCID NCIAS
+               END LOOP; --FIM DO LOOP DAS INCID√äNCIAS
 
                DELETE INCITEMP
                WHERE NRINCITEMP = V_INCITEMP;
@@ -3711,7 +3711,7 @@ BEGIN
 
       --RATEIO DOS ENCARGOS--------------------------------------------------------------------------------------------------------
 
-      /* VERIFICAR SE EXISTE ENCARGO COM VALOR SOMENTE SE TIVER ALGUM ENCARGO PARAMETRIZADO PARA RATEAR PELO PESO LÕQUIDO */
+      /* VERIFICAR SE EXISTE ENCARGO COM VALOR SOMENTE SE TIVER ALGUM ENCARGO PARAMETRIZADO PARA RATEAR PELO PESO L√çQUIDO */
       IF NOT(V_ENCARGOLIQUIDO = 'N') THEN
          V_EXISTEENCARGO := 0;
          BEGIN
@@ -3730,7 +3730,7 @@ BEGIN
             V_ENCARGOLIQUIDO := 'N';
          END IF;
 
-         /* VERIFICAR SE ALGUM ENCARGO QUE TEM VALOR EST¡ PARAMETRIZADO PARA SER RATEADO POR PESO LÕQUIDO CASO SEJA OP«√O LISTA */
+         /* VERIFICAR SE ALGUM ENCARGO QUE TEM VALOR EST√Å PARAMETRIZADO PARA SER RATEADO POR PESO L√çQUIDO CASO SEJA OP√á√ÉO LISTA */
          IF (V_EXISTEENCARGO > 0) THEN
             IF NOT(V_ENCARGOLIQUIDO = 'T') THEN
                BEGIN
@@ -3745,7 +3745,7 @@ BEGIN
                   WHEN NO_DATA_FOUND THEN
                      V_EXISTEENCARGO := 0;
                END;
-               /* SE HOUVER ENCARGO COM VALOR MAS NENHUM ESTEJA PARAMETRIZADO NA LISTA PARA RATEAR POR PESO LÕQUIDO, A VARI¡VEL V_ENCARGOLIQUIDO … PASSADA PARA 'N' PARA QUE OS ENCARGOS QUE TENHAM
+               /* SE HOUVER ENCARGO COM VALOR MAS NENHUM ESTEJA PARAMETRIZADO NA LISTA PARA RATEAR POR PESO L√çQUIDO, A VARI√ÅVEL V_ENCARGOLIQUIDO √â PASSADA PARA 'N' PARA QUE OS ENCARGOS QUE TENHAM
                   VALOR SEJAM RATEADOS DE FORMA PROPORCIONAL AO VALOR DOS PRODUTOS */
                IF (V_EXISTEENCARGO = 0) THEN
                   V_ENCARGOLIQUIDO := 'N';
@@ -3951,7 +3951,7 @@ BEGIN
                         V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
                      ELSE
                         V_TAXABASECALC :=(100 - NVL(C_ITEMPROIMPOS.VRPERREDBCSTIT, 0))/100; 
-                        V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando reduÁ„o da base para no update abaixo utilize o valor adicionando a majoraÁ„o*/
+                        V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando redu√ß√£o da base para no update abaixo utilize o valor adicionando a majora√ß√£o*/
                         V_TAXABASECALC := 1 + (C_ITEMPROIMPOS.VRPERREDBCIT)/100;
                         V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
 
@@ -4057,7 +4057,7 @@ BEGIN
          END IF;
       END LOOP;
 
-      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO LÕQUIDO DOS PRODUTOS*/
+      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO L√çQUIDO DOS PRODUTOS*/
       IF NOT (V_ENCARGOLIQUIDO = 'N') THEN
          FOR C_ITEMENCARGO IN (SELECT IE.CDENCARGO AS CDENCARGO, VRITEMENCA, IDENCARGO,
                                       EN.CDCTBLENTREN, EN.CDCTBLSAIDEN
@@ -4267,7 +4267,7 @@ BEGIN
                            V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
                         ELSE
                            V_TAXABASECALC :=(100 - NVL(C_ITEMPROIMPOS.VRPERREDBCSTIT, 0))/100; 
-                           V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando reduÁ„o da base para no update abaixo utilize o valor adicionando a majoraÁ„o*/
+                           V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando redu√ß√£o da base para no update abaixo utilize o valor adicionando a majora√ß√£o*/
                            V_TAXABASECALC := 1 + (C_ITEMPROIMPOS.VRPERREDBCIT)/100;
                            V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
 
@@ -4374,7 +4374,7 @@ BEGIN
             END IF;
          END LOOP;
       END IF;
-      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO LÕQUIDO DOS PRODUTOS*/
+      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO L√çQUIDO DOS PRODUTOS*/
 
       UPDATE ITEMPROIMPOS
       SET VRIMPOSTOIT = 0,
@@ -4395,7 +4395,7 @@ BEGIN
              (CDFILIAL    = P_FILIAL)   AND
              (VRADICFECP < 0);
              
-      --C¡LCULO DO VALOR DOS IMPOSTOS QUE CONT…M OUTROS IMPOSTOS NA SUA BASE DE C¡LCULO
+      --C√ÅLCULO DO VALOR DOS IMPOSTOS QUE CONT√âM OUTROS IMPOSTOS NA SUA BASE DE C√ÅLCULO
       FOR C_PRODUTO IN (SELECT IP.NRSEQITPROD AS NRSEQITPROD,
                                II.CDIMPOSTO,
                                VRPERREDBCIT,
@@ -4530,7 +4530,7 @@ BEGIN
 
          V_VRIMPOSTO := C_PRODUTO.VRIMPOSTOIT;
 
-         /*IMPOSTO PARA SUBSTITUI«√O TRIBUTARIA*/
+         /*IMPOSTO PARA SUBSTITUI√á√ÉO TRIBUTARIA*/
          V_CDIMPOSTRIB  := null;
          V_IDVRIMPSTRIB := null;
          FOR C_ICMSST IN (SELECT CDIMPOSTO
@@ -4541,8 +4541,8 @@ BEGIN
          END LOOP;
 
          V_VRIMPOSTOST := 0;
-         /*SÛ ir· fazer o c·lculo de outro imposto compondo a base de c·lculo,
-           se o valor do mesmo n„o estiver zerado OU
+         /*S√≥ ir√° fazer o c√°lculo de outro imposto compondo a base de c√°lculo,
+           se o valor do mesmo n√£o estiver zerado OU
            se for o imposto de st, pois o icms pode ter sido recalculado(por ter alguem compondo sua bc)
            e o imposto st precisa retirar o valor final do st*/
 
@@ -4724,7 +4724,7 @@ BEGIN
                IF (C_PRODUTO.IDUTILBCPMC = W_S) THEN
                   V_TAXAALIQUOTA := C_PRODUTO.VRALIQITEM / 100;
                   V_VRIMPOSTO := C_PRODUTO.VRBASECALCIT * V_TAXAALIQUOTA;
-               ELSIF ((C_PRODUTO.IDCONSDIFALIQ = W_S) OR (C_PRODUTO.VRIMPOSTOREP IS NOT NULL)) THEN  /* Caso esteja cadastrao Valor a ser Repassado, a base de C·lculo e o valor do imposto È calculado de acordo com este cadastro */
+               ELSIF ((C_PRODUTO.IDCONSDIFALIQ = W_S) OR (C_PRODUTO.VRIMPOSTOREP IS NOT NULL)) THEN  /* Caso esteja cadastrao Valor a ser Repassado, a base de C√°lculo e o valor do imposto √© calculado de acordo com este cadastro */
                   V_TAXAALIQUOTA := C_PRODUTO.VRALIQITEM / 100;
                   V_VRIMPOSTO := C_PRODUTO.VRIMPOSTOIT;
                ELSE
@@ -4756,8 +4756,8 @@ BEGIN
                   V_VRIMPOSTO := ((C_PRODUTO.VRBASECALCIT + (((V_TOTAIMPBCALC + V_TOTAIMPBCDES) * V_TAXABASECALC) * V_TAXABCSUBSTR)) * V_TAXAALIQUOTA);
                END IF;
                
-               -- ESSA CONDI«√O SER¡ FEITA PORQUE A BASE DE C¡LCULO N√O SER¡ ALTERADO QUANDO O PRODUTO TIVER CONSIDERANDO 
-               -- O DIFERENCIAL DE ALÕQUOTA DO ICMS, ISTO PORQUE A BASE DE C¡LCULO J¡ FOI CALCULADA NA PROCEDURE CONSIDERA_DIFAL_ICMS
+               -- ESSA CONDI√á√ÉO SER√Å FEITA PORQUE A BASE DE C√ÅLCULO N√ÉO SER√Å ALTERADO QUANDO O PRODUTO TIVER CONSIDERANDO 
+               -- O DIFERENCIAL DE AL√çQUOTA DO ICMS, ISTO PORQUE A BASE DE C√ÅLCULO J√Å FOI CALCULADA NA PROCEDURE CONSIDERA_DIFAL_ICMS
                IF ((C_PRODUTO.IDCONSDIFALIQ = W_S) OR (C_PRODUTO.VRIMPOSTOREP IS NOT NULL)) THEN     
                   UPDATE ITEMPROIMPOS
                      SET VRIMPOSTOVISUIT = DECODE(V_IDPERVISIMPSCRE, 'S', (VRIMPOSTOIT), DECODE(CDFISCALIT, '1', (VRIMPOSTOIT),0))
@@ -4779,8 +4779,8 @@ BEGIN
                            (NRITPROIMPOS = C_PRODUTO.NRITPROIMPOS);
                      V_VRIMPOSTO := 0;
                   ELSE
-                     -- ESSA CONDI«√O SER¡ FEITA PORQUE A BASE DE C¡LCULO N√O SER¡ ALTERADO QUANDO O PRODUTO TIVER PMC,
-                     -- ISTO PORQUE A BASE DE C¡LCULO J¡ FOI CALCULADA NA PROCEDURE CALCULA_BC_PMC
+                     -- ESSA CONDI√á√ÉO SER√Å FEITA PORQUE A BASE DE C√ÅLCULO N√ÉO SER√Å ALTERADO QUANDO O PRODUTO TIVER PMC,
+                     -- ISTO PORQUE A BASE DE C√ÅLCULO J√Å FOI CALCULADA NA PROCEDURE CALCULA_BC_PMC
                      IF (C_PRODUTO.IDUTILBCPMC = W_S) THEN
                         V_FECPPMCAUX := 0;
 
@@ -4868,7 +4868,7 @@ BEGIN
                END IF;
             END IF;
 
-            /* Rotina para calcular o ICMS ST considerando % carga tribut·ria mÈdia */
+            /* Rotina para calcular o ICMS ST considerando % carga tribut√°ria m√©dia */
 
             IF V_CDIMPOSTRIB IS NOT NULL THEN
                BEGIN
@@ -5157,9 +5157,9 @@ BEGIN
             END IF;
          END IF;
 
-         -- EM MG O C¡LCULO DA BASE … REALIZADO DE UMA FORMA DIFERENTE DE ACORDO COM A
-         -- ORIENTA«√O TRIBUT¡RIA DOLT/SUTRI N∫ 003/2016. PARA ESTE PROCESSO … NECESS¡RIO
-         -- CALCULAR O IMPOSTO POR DENTRO (ELE COMPONDO A BASE DE C¡LCULO DELE MESMO)
+         -- EM MG O C√ÅLCULO DA BASE √â REALIZADO DE UMA FORMA DIFERENTE DE ACORDO COM A
+         -- ORIENTA√á√ÉO TRIBUT√ÅRIA DOLT/SUTRI N¬∫ 003/2016. PARA ESTE PROCESSO √â NECESS√ÅRIO
+         -- CALCULAR O IMPOSTO POR DENTRO (ELE COMPONDO A BASE DE C√ÅLCULO DELE MESMO)
 
          --200683
          BEGIN
@@ -5203,7 +5203,7 @@ BEGIN
                V_ALIQFECPDEST := 0;
                IF ((V_IDINTEREST = 'S') AND (V_IDCONSFINAL = 'S') AND (V_IDCONTRIBICMSAUX = 'N') AND (V_IDPRESENCIAL <> '1')) OR (C_PRODUTO.CDIMPOSTONFE = '80') THEN
                   --IF (C_PRODUTO.CDIMPOSTONFE = '00') THEN
-                     -- CONSULTANDO A ALÕQUOTA INTERNA DO IMPOSTO
+                     -- CONSULTANDO A AL√çQUOTA INTERNA DO IMPOSTO
                      DELETE
                        FROM ALIQTEMP
                       WHERE NRALIQTEMP = V_ALIQTEMP;
@@ -5250,7 +5250,7 @@ BEGIN
                               V_ALIQICMSDEST := 0;
                         END;
                      END IF;
-                     -- CONSULTANDO A ALÕQUOTA DO FCP (FUNDO DE COMBATE A POBREZA) QUANDO ELE EST¡ CADASTRADO COMO IMPOSTO
+                     -- CONSULTANDO A AL√çQUOTA DO FCP (FUNDO DE COMBATE A POBREZA) QUANDO ELE EST√Å CADASTRADO COMO IMPOSTO
                      IF (V_ALIQFECPDEST = 0) OR (V_ALIQFECPDEST IS NULL) THEN
                         BEGIN
                            SELECT CDIMPOSTO
@@ -5265,7 +5265,7 @@ BEGIN
                            DELETE
                              FROM ALIQTEMP
                             WHERE NRALIQTEMP = V_ALIQTEMP;
-                           --VERIFICANDO SE EXISTE A INCID NCIA DE FECP PARA O PRODUTO
+                           --VERIFICANDO SE EXISTE A INCID√äNCIA DE FECP PARA O PRODUTO
                            IF C_PRODUTO.IDUTMUNIORIG = w_D THEN
                               CONSULTA_ALIQUOTA(V_CDIMPOSTOFECP, w_S, P_EMPRESA, C_PRODUTO.CDARVPROD, P_INSCESTA, V_PAISDEST,
                                                 V_ESTADEST, V_PAISDEST, V_ESTADEST, V_MUNIDEST, V_LIQUIITEM, P_INIVALID, P_FILIAL, P_LANCTONF, V_CDGRPFISCSV, P_TIPOOPER,
@@ -5288,8 +5288,8 @@ BEGIN
                            V_ALIQFECPDEST := 0;
                         END IF;
                      END IF;
-                     -- REALIZANDO O C¡LCULO DA BASE COM O IMPOSTO POR DENTRO
-                     -- BASE DE C¡LCULO REAL = BASE DE C¡LCULO / (1 - ((ALIQUOTA DO IMPOSTO + ALIQUOTA DO FCP) / 100)
+                     -- REALIZANDO O C√ÅLCULO DA BASE COM O IMPOSTO POR DENTRO
+                     -- BASE DE C√ÅLCULO REAL = BASE DE C√ÅLCULO / (1 - ((ALIQUOTA DO IMPOSTO + ALIQUOTA DO FCP) / 100)
                      BEGIN
                      SELECT MAX(VRBASECALCIT)
                        INTO V_BASECALCIT
@@ -5473,9 +5473,9 @@ BEGIN
          END IF;
       END LOOP;
 
-   --FIM DA ATUALIZA«√O NA TABELA DE ITEMPROIMPOS
+   --FIM DA ATUALIZA√á√ÉO NA TABELA DE ITEMPROIMPOS
 
-   --TOTALIZA«√O DOS IMPOSTOS
+   --TOTALIZA√á√ÉO DOS IMPOSTOS
 
       DELETE IMPOSNFTOT
       WHERE (CDFILIAL = P_FILIAL) AND
@@ -5526,7 +5526,7 @@ BEGIN
 
       END LOOP;
 
-   --INCLUS√O DOS IMPOSTOS DE CORPO DE NOTA EM CASO DE NOTA FISCAL--------------------------------------------------------------------------
+   --INCLUS√ÉO DOS IMPOSTOS DE CORPO DE NOTA EM CASO DE NOTA FISCAL--------------------------------------------------------------------------
       V_SEQUIMPOSTNF := w_01;
 
       DELETE IMPOSTONF
@@ -5546,7 +5546,7 @@ BEGIN
          V_ALIQUTMP := 0;
          V_UTIBB    := 'N';
          V_SIMPLES  := 'N';
---integraÁ„o fiscal especifica com Compass_Argentina atraves da importaÁ„o de aliquota do imposto IBB
+--integra√ß√£o fiscal especifica com Compass_Argentina atraves da importa√ß√£o de aliquota do imposto IBB
 --A aliquota de imposto 03(ibb) sera cadastrada na tabela paramintegraibb e tera prioridade sobre o
 -- cadastro de aliquota realizado em sistema
 
@@ -5716,7 +5716,7 @@ BEGIN
             V_DESCITEM := 0;
          END IF;
 
-         IF (V_ALIQUTMP IS NULL) THEN --VERIFICAR VALOR DA ALÕQUOTA P/ IMPOSTO RECUPER¡VEL COM COD. FISCAL = '3'
+         IF (V_ALIQUTMP IS NULL) THEN --VERIFICAR VALOR DA AL√çQUOTA P/ IMPOSTO RECUPER√ÅVEL COM COD. FISCAL = '3'
             V_ALIQUTMP := 0;
          END IF;
 
@@ -5922,21 +5922,21 @@ BEGIN
            FROM DADOSADIC
           WHERE CDFILIAL = P_FILIAL
             AND NRLANCTONF = P_LANCTONF
-            AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+            AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
 
          IF V_EXISTDSDADOSADIC = 0 THEN
 
             /*PREENCHE AS MENSAGENS ATRELADAS A INSCRICAO ESTADUAL*/
             INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                           VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99'))));
+                           VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99'))));
 
             V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
          ELSE
             UPDATE DADOSADIC
-               SET DSDADOADIC = 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')))
+               SET DSDADOADIC = 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_BCICMSRET, 2), '9999999999999.99')))|| ' Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ICMSRET, 2), '9999999999999.99')))
              WHERE CDFILIAL = P_FILIAL
                AND NRLANCTONF = P_LANCTONF
-               AND DSDADOADIC LIKE 'ICMS retido anteriormente por substituiÁ„o tribut·ria: BC %';
+               AND DSDADOADIC LIKE 'ICMS retido anteriormente por substitui√ß√£o tribut√°ria: BC %';
          END IF;
       END IF;
 
@@ -6010,7 +6010,7 @@ BEGIN
       ELSE
          V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
       END IF;
-      -- FIM DA TOTALIZA«√O DOS IMPOSTOS
+      -- FIM DA TOTALIZA√á√ÉO DOS IMPOSTOS
 
 
       -- NOTAS COM DOCUMENTO DE ORIGEM
@@ -6029,7 +6029,7 @@ BEGIN
                       AND IT.NRLANCTONFIT = N.NRLANCTONF) LOOP
 
                INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                  VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Nota de Origem: '||C_ITEMNOTAFISC.NRNOTA||' (Emiss„o: '||C_ITEMNOTAFISC.DTEMISSAO||' Total: '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')))|| ' )');
+                  VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Nota de Origem: '||C_ITEMNOTAFISC.NRNOTA||' (Emiss√£o: '||C_ITEMNOTAFISC.DTEMISSAO||' Total: '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')))|| ' )');
                          V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
          -- dados adicionais para devolucao em lista
 
@@ -6536,7 +6536,7 @@ BEGIN
 
                      IF (NOT((V_IDGERICMSTDESPA = 'S') AND (V_CDIMPOSTRIB IS NOT NULL) OR (V_IDGERIPIDESPA = 'S')
                         AND (V_CDIMPOSIPI IS NOT NULL)) AND (V_IDUTCTRLFIS = 'S')) OR (V_IDUTCTRLFIS = 'N') THEN
-                        -- Verifica se h· grupo fiscal por servico
+                        -- Verifica se h√° grupo fiscal por servico
                         SELECT MAX(CDGRUPOFISC)
                         INTO V_CDGRPFISCSV
                         FROM SERVCLIE SC, SERVICO S
@@ -6547,7 +6547,7 @@ BEGIN
                               S.CDPRODUTO   = C_ITEMPROD.CDPRODUTO;
 
                         IF V_CDGRPFISCSV IS NULL THEN
-                        -- Verifica se h· grupo fiscal por cliente da filial
+                        -- Verifica se h√° grupo fiscal por cliente da filial
                            SELECT MAX(CDGRUPOFISC)
                            INTO V_CDGRPFISCSV
                            FROM CLIENFILIAL
@@ -6840,7 +6840,7 @@ BEGIN
 
 
 
-                        /*Verifica alÌquota parametrizada por tipo de operaÁ„o desde que n„o seja nota de estorno de cancelamento*/
+                        /*Verifica al√≠quota parametrizada por tipo de opera√ß√£o desde que n√£o seja nota de estorno de cancelamento*/
                         V_TAXABASECALC := (100 - V_PREDBCTMP)/100;
                         V_CONTABCALC  := V_LIQUIITEM - (V_LIQUIITEM * V_TAXABASECALC);
 
@@ -7082,7 +7082,7 @@ BEGIN
                                  END IF;
                               END IF;
 
-                              /*Impostos importados do arquivo XML, na devoluÁ„o sempre vai gravar de acordo com a origem*/
+                              /*Impostos importados do arquivo XML, na devolu√ß√£o sempre vai gravar de acordo com a origem*/
                               IF (C_ITEMPROIMPOS.IDVALORINFIT = W_S) AND (V_IDNFGERADAVIAXML = 'S') THEN
                                  V_BASECALCIT := ROUND((C_ITEMPROIMPOS.VRBASECALCIT * V_VRFATOCONV), 2);
                                  V_BASECALCTO := V_BASECALCIT;
@@ -7102,12 +7102,12 @@ BEGIN
                                  V_BASECALCTO := 0;
                               END IF;
 
-                              IF V_BASECALCTO IS NULL THEN        /*utiliza pmc mas n„o tem impostrib ent„o n„o entra na parte do calcula pmc, desta forma, a vari·vel de bC fica vazia*/
+                              IF V_BASECALCTO IS NULL THEN        /*utiliza pmc mas n√£o tem impostrib ent√£o n√£o entra na parte do calcula pmc, desta forma, a vari√°vel de bC fica vazia*/
                                  V_BASECALCTO  := V_BASECALCIT;
                                  V_IMPOSTOIT   := (V_BASECALCIT * V_TAXAALIQUOTA) - V_PARDEDTMP;
                               END IF;
 
-                              -- ALTERAR O VALOR CONT¡BIL CASO O PAR¬METRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
+                              -- ALTERAR O VALOR CONT√ÅBIL CASO O PAR√ÇMETRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
 
                               IF (V_IDCONTCONFORIG = 'N') THEN
 
@@ -7146,7 +7146,7 @@ BEGIN
                                        AND NRSEQITPROD    = C_ITEMPROD.NRSEQITPROD;
                                  END IF;
                               END IF;
-                              -- Alterar o valor cont·bil caso o par‚metro "Contabiliza conforme NF de origem" esteja desmarcado
+                              -- Alterar o valor cont√°bil caso o par√¢metro "Contabiliza conforme NF de origem" esteja desmarcado
 
                               Begin
                                  SELECT CDFILIAL
@@ -7260,7 +7260,7 @@ BEGIN
                                  ELSE
                                     IF (C_ITEMPROIMPOS.NRITPROIMPOS = w_3)  THEN
 
-                                       /*Inserir a linha de diferencial de alÌquota*/
+                                       /*Inserir a linha de diferencial de al√≠quota*/
 
                                        V_DIFALIQ := 0;
 
@@ -7295,7 +7295,7 @@ BEGIN
                                              C_ITEMPROIMPOS.IDMODBCNFE, C_ITEMPROIMPOS.IDMODBCSTNFE, C_ITEMPROIMPOS.CDTPCREDPICOITE, C_ITEMPROIMPOS.CDNATUBCALPCIT, NVL(C_ITEMPROIMPOS.IDMOTDESONERAIT,'9'),
                                              V_CDDETALHEPRODTEMP, (C_ITEMPROIMPOS.VRIMPOSTOIT * V_VRFATOCONV), V_CDREGRAITALIQ, C_ITEMPROIMPOS.IDDIFALIQCUSPRI,
                                              V_CDENQLEGALIPI, V_CDCEST, V_CDBENEFFISCAL, NVL(V_IDIMPODESONERA, 'N'), NVL(V_IDCONSDESONVRNF, 'N'), C_ITEMPROIMPOS.IDVALORINFIT);
-                                       /*Inserir a linha de diferencial de alÌquota*/
+                                       /*Inserir a linha de diferencial de al√≠quota*/
                                        END IF;
                                     ELSE
                                        INSERT INTO ITEMPROIMPOS(
@@ -7405,7 +7405,7 @@ BEGIN
                               END IF;
                            END IF;
 
-                           -- ALTERAR O VALOR CONT¡BIL CASO O PAR¬METRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
+                           -- ALTERAR O VALOR CONT√ÅBIL CASO O PAR√ÇMETRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
                            IF (V_IDCONTCONFORIG =  'N') THEN
 
                               V_IMPOCONTAB  := 0;
@@ -7460,7 +7460,7 @@ BEGIN
                               END IF;
 
                            END IF;
-                           -- Alterar o valor cont·bil caso o par‚metro "Contabiliza conforme NF de origem" esteja desmarcado
+                           -- Alterar o valor cont√°bil caso o par√¢metro "Contabiliza conforme NF de origem" esteja desmarcado
                            IF V_CHAVE IS NULL THEN
                               V_ICMS := 'N';
                               FOR C_ICMS IN (SELECT CDIMPOSTO
@@ -7665,7 +7665,7 @@ BEGIN
 
                      IF (NOT((V_IDGERICMSTDESPA = 'S') AND (V_CDIMPOSTRIB IS NOT NULL) OR (V_IDGERIPIDESPA = 'S')
                         AND (V_CDIMPOSIPI IS NOT NULL)) AND (V_IDUTCTRLFIS = 'S')) OR (V_IDUTCTRLFIS = 'N') THEN
-                        -- Verifica se h· grupo fiscal por servico
+                        -- Verifica se h√° grupo fiscal por servico
                         SELECT MAX(CDGRUPOFISC)
                         INTO V_CDGRPFISCSV
                         FROM SERVCLIE SC, SERVICO S
@@ -7676,7 +7676,7 @@ BEGIN
                               S.CDPRODUTO   = C_ITEMPROD.CDPRODUTO;
 
                         IF V_CDGRPFISCSV IS NULL THEN
-                        -- Verifica se h· grupo fiscal por cliente da filial
+                        -- Verifica se h√° grupo fiscal por cliente da filial
                            SELECT MAX(CDGRUPOFISC)
                            INTO V_CDGRPFISCSV
                            FROM CLIENFILIAL
@@ -7969,7 +7969,7 @@ BEGIN
 
 
 
-                        /*Verifica alÌquota parametrizada por tipo de operaÁ„o desde que n„o seja nota de estorno de cancelamento*/
+                        /*Verifica al√≠quota parametrizada por tipo de opera√ß√£o desde que n√£o seja nota de estorno de cancelamento*/
                         V_TAXABASECALC := (100 - V_PREDBCTMP)/100;
                         V_CONTABCALC  := V_LIQUIITEM - (V_LIQUIITEM * V_TAXABASECALC);
 
@@ -8211,7 +8211,7 @@ BEGIN
                                  END IF;
                               END IF;
 
-                              /*Impostos importados do arquivo XML, na devoluÁ„o sempre vai gravar de acordo com a origem*/
+                              /*Impostos importados do arquivo XML, na devolu√ß√£o sempre vai gravar de acordo com a origem*/
                               IF (C_ITEMPROIMPOS.IDVALORINFIT = W_S) AND (V_IDNFGERADAVIAXML = 'S') THEN
                                  V_BASECALCIT := ROUND((C_ITEMPROIMPOS.VRBASECALCIT * V_VRFATOCONV), 2);
                                  V_BASECALCTO := V_BASECALCIT;
@@ -8231,12 +8231,12 @@ BEGIN
                                  V_BASECALCTO := 0;
                               END IF;
 
-                              IF V_BASECALCTO IS NULL THEN        /*utiliza pmc mas n„o tem impostrib ent„o n„o entra na parte do calcula pmc, desta forma, a vari·vel de bC fica vazia*/
+                              IF V_BASECALCTO IS NULL THEN        /*utiliza pmc mas n√£o tem impostrib ent√£o n√£o entra na parte do calcula pmc, desta forma, a vari√°vel de bC fica vazia*/
                                  V_BASECALCTO  := V_BASECALCIT;
                                  V_IMPOSTOIT   := (V_BASECALCIT * V_TAXAALIQUOTA) - V_PARDEDTMP;
                               END IF;
 
-                              -- ALTERAR O VALOR CONT¡BIL CASO O PAR¬METRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
+                              -- ALTERAR O VALOR CONT√ÅBIL CASO O PAR√ÇMETRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
 
                               IF (V_IDCONTCONFORIG = 'N') THEN
 
@@ -8275,7 +8275,7 @@ BEGIN
                                        AND NRSEQITPROD    = C_ITEMPROD.NRSEQITPROD;
                                  END IF;
                               END IF;
-                              -- Alterar o valor cont·bil caso o par‚metro "Contabiliza conforme NF de origem" esteja desmarcado
+                              -- Alterar o valor cont√°bil caso o par√¢metro "Contabiliza conforme NF de origem" esteja desmarcado
 
                               Begin
                                  SELECT CDFILIAL
@@ -8389,7 +8389,7 @@ BEGIN
                                  ELSE
                                     IF (C_ITEMPROIMPOS.NRITPROIMPOS = w_3)  THEN
 
-                                       /*Inserir a linha de diferencial de alÌquota*/
+                                       /*Inserir a linha de diferencial de al√≠quota*/
 
                                        V_DIFALIQ := 0;
 
@@ -8424,7 +8424,7 @@ BEGIN
                                              C_ITEMPROIMPOS.IDMODBCNFE, C_ITEMPROIMPOS.IDMODBCSTNFE, C_ITEMPROIMPOS.CDTPCREDPICOITE, C_ITEMPROIMPOS.CDNATUBCALPCIT, NVL(C_ITEMPROIMPOS.IDMOTDESONERAIT,'9'),
                                              V_CDDETALHEPRODTEMP, (C_ITEMPROIMPOS.VRIMPOSTOIT * V_VRFATOCONV), V_CDREGRAITALIQ, C_ITEMPROIMPOS.IDDIFALIQCUSPRI,
                                              V_CDENQLEGALIPI, V_CDCEST, V_CDBENEFFISCAL, NVL(V_IDIMPODESONERA, 'N'), NVL(V_IDCONSDESONVRNF, 'N'), C_ITEMPROIMPOS.IDVALORINFIT);
-                                       /*Inserir a linha de diferencial de alÌquota*/
+                                       /*Inserir a linha de diferencial de al√≠quota*/
                                        END IF;
                                     ELSE
                                        INSERT INTO ITEMPROIMPOS(
@@ -8622,7 +8622,7 @@ BEGIN
                               END IF;
                            END IF;
 
-                           -- ALTERAR O VALOR CONT¡BIL CASO O PAR¬METRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
+                           -- ALTERAR O VALOR CONT√ÅBIL CASO O PAR√ÇMETRO "CONTABILIZA CONFORME NF DE ORIGEM" ESTEJA DESMARCADO
                            IF (V_IDCONTCONFORIG =  'N') THEN
 
                               V_IMPOCONTAB  := 0;
@@ -8677,7 +8677,7 @@ BEGIN
                               END IF;
 
                            END IF;
-                           -- Alterar o valor cont·bil caso o par‚metro "Contabiliza conforme NF de origem" esteja desmarcado
+                           -- Alterar o valor cont√°bil caso o par√¢metro "Contabiliza conforme NF de origem" esteja desmarcado
                            IF V_CHAVE IS NULL THEN
                               V_ICMS := 'N';
                               FOR C_ICMS IN (SELECT CDIMPOSTO
@@ -8752,7 +8752,7 @@ BEGIN
                       WHERE NRALIQTEMP = V_ALIQTEMP;
                   END LOOP;
                END IF;
-               /*Imposto gerado como encargo na importaÁdo de xml */
+               /*Imposto gerado como encargo na importa√ßdo de xml */
                BEGIN
                   SELECT NVL(IDNFGERADAVIAXML, 'N')
                     INTO V_IDNFORIGVIAXML
@@ -8767,7 +8767,7 @@ BEGIN
                   WHEN NO_DATA_FOUND THEN
                      V_IDNFORIGVIAXML := 'N';
                END;
-               /*Imposto gerado como encargo na importaÁdo de xml*/
+               /*Imposto gerado como encargo na importa√ßdo de xml*/
                IF (V_IDNFORIGVIAXML = 'S') AND (V_UPDENCIMPXML = 'N') THEN
                   FOR C_ENCARGO IN (SELECT IMP.CDENCARGOIMPXML
                                       FROM IMPOSTONFE NFE, IMPOSTO IMP
@@ -8943,7 +8943,7 @@ BEGIN
          END IF;   
       END LOOP;
 
-      /*CALCULA DESCONTO DE BONIFICA«√O NA DEVOLU«√O DE NOTAS */
+      /*CALCULA DESCONTO DE BONIFICA√á√ÉO NA DEVOLU√á√ÉO DE NOTAS */
       SELECT MAX(CDENCDESCBONDEV)
         INTO V_CDENCDESCBONDEV
         FROM PARAMGERAL;
@@ -8977,7 +8977,7 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL   = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'Base de C·lculo do ICMS ST%';
+         AND DSDADOADIC LIKE 'Base de C√°lculo do ICMS ST%';
       DELETE FROM DADOSADIC
        WHERE CDFILIAL   = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
@@ -9041,20 +9041,20 @@ BEGIN
                                    FROM DADOSADIC
                                   WHERE CDFILIAL = P_FILIAL
                                     AND NRLANCTONF = P_LANCTONF
-                                    AND DSDADOADIC LIKE 'Base de C·lculo do ICMS ST%';
+                                    AND DSDADOADIC LIKE 'Base de C√°lculo do ICMS ST%';
 
                                  IF V_EXISTDSDADOSADIC = 0 THEN
 
                                     INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                                                   VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Base de C·lculo do ICMS ST: R$'||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')))|| ' ICMS ST: R$'|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99'))));
+                                                   VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Base de C√°lculo do ICMS ST: R$'||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBASECALC , 2), '9999999999999.99')))|| ' ICMS ST: R$'|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99'))));
 
                                     V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
                                  ELSE
                                     UPDATE DADOSADIC
-                                       SET DSDADOADIC = 'Base de C·lculo do ICMS ST: R$'||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')))|| ' ICMS ST: R$'|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')))
+                                       SET DSDADOADIC = 'Base de C√°lculo do ICMS ST: R$'||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBASECALC, 2), '9999999999999.99')))|| ' ICMS ST: R$'|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRICMSST, 2), '9999999999999.99')))
                                       WHERE CDFILIAL = P_FILIAL
                                         AND NRLANCTONF = P_LANCTONF
-                                        AND DSDADOADIC LIKE 'Base de C·lculo do ICMS ST%';
+                                        AND DSDADOADIC LIKE 'Base de C√°lculo do ICMS ST%';
                                  END IF;
                               ELSE
                                  SELECT COUNT(*)
@@ -9158,7 +9158,7 @@ BEGIN
       END IF;
 
       --RATEIO DOS ENCARGOS--------------------------------------------------------------------------------------------------------
-      /* VERIFICAR SE EXISTE ENCARGO COM VALOR SOMENTE SE TIVER ALGUM ENCARGO PARAMETRIZADO PARA RATEAR PELO PESO LÕQUIDO */
+      /* VERIFICAR SE EXISTE ENCARGO COM VALOR SOMENTE SE TIVER ALGUM ENCARGO PARAMETRIZADO PARA RATEAR PELO PESO L√çQUIDO */
       IF NOT(V_ENCARGOLIQUIDO = 'N') THEN
          V_EXISTEENCARGO := 0;
          BEGIN
@@ -9177,7 +9177,7 @@ BEGIN
             V_ENCARGOLIQUIDO := 'N';
          END IF;
 
-         /* VERIFICAR SE ALGUM ENCARGO QUE TEM VALOR EST¡ PARAMETRIZADO PARA SER RATEADO POR PESO LÕQUIDO CASO SEJA OP«√O LISTA */
+         /* VERIFICAR SE ALGUM ENCARGO QUE TEM VALOR EST√Å PARAMETRIZADO PARA SER RATEADO POR PESO L√çQUIDO CASO SEJA OP√á√ÉO LISTA */
          IF (V_EXISTEENCARGO > 0) THEN
             IF NOT(V_ENCARGOLIQUIDO = 'T') THEN
                BEGIN
@@ -9192,7 +9192,7 @@ BEGIN
                   WHEN NO_DATA_FOUND THEN
                      V_EXISTEENCARGO := 0;
                END;
-               /* SE HOUVER ENCARGO COM VALOR MAS NENHUM ESTEJA PARAMETRIZADO NA LISTA PARA RATEAR POR PESO LÕQUIDO, A VARI¡VEL V_ENCARGOLIQUIDO … PASSADA PARA 'N' PARA QUE OS ENCARGOS QUE TENHAM
+               /* SE HOUVER ENCARGO COM VALOR MAS NENHUM ESTEJA PARAMETRIZADO NA LISTA PARA RATEAR POR PESO L√çQUIDO, A VARI√ÅVEL V_ENCARGOLIQUIDO √â PASSADA PARA 'N' PARA QUE OS ENCARGOS QUE TENHAM
                   VALOR SEJAM RATEADOS DE FORMA PROPORCIONAL AO VALOR DOS PRODUTOS */
                IF (V_EXISTEENCARGO = 0) THEN
                   V_ENCARGOLIQUIDO := 'N';
@@ -9201,7 +9201,7 @@ BEGIN
          END IF;
       END IF;
 
-      /* RATEIO DOS ENCARGOS QUE N√O S√O REFERENTES A IMPOSTOS GERADOS COMO ENCARGO NA ENTRADA */
+      /* RATEIO DOS ENCARGOS QUE N√ÉO S√ÉO REFERENTES A IMPOSTOS GERADOS COMO ENCARGO NA ENTRADA */
       FOR C_ITEMENCARGO IN (SELECT IE.CDENCARGO AS CDENCARGO, VRITEMENCA, IDENCARGO,
                                    EN.CDCTBLENTREN, EN.CDCTBLSAIDEN
                               FROM ITEMENCARGO IE, ENCARGO EN
@@ -9360,7 +9360,7 @@ BEGIN
                                           II.NRITPROIMPOS,
                                           II.CDIMPOSTO) LOOP
 
-               /*IMPOSTOS QUE N√O FORAM GRAVADOS DE ACORDO COM A ORIGEM N√O DEVEM EFETUAR O C¡LCULO*/
+               /*IMPOSTOS QUE N√ÉO FORAM GRAVADOS DE ACORDO COM A ORIGEM N√ÉO DEVEM EFETUAR O C√ÅLCULO*/
                IF C_ITEMPROIMPOS.IDVALORINFIT <> W_S THEN
                   IF NOT((C_ITEMPROIMPOS.IDUTILBCPMC = W_S) AND (C_ITEMPROIMPOS.CDIMPOSTONFE = '80')) OR (C_ITEMPROIMPOS.IDUTILBCPMC <> W_S) THEN
 
@@ -9401,7 +9401,7 @@ BEGIN
                         V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
                      ELSE
                         V_TAXABASECALC :=(100 - NVL(C_ITEMPROIMPOS.VRPERREDBCSTIT, 0))/100; 
-                        V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando reduÁ„o da base para no update abaixo utilize o valor adicionando a majoraÁ„o*/
+                        V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando redu√ß√£o da base para no update abaixo utilize o valor adicionando a majora√ß√£o*/
                         V_TAXABASECALC := 1 + (C_ITEMPROIMPOS.VRPERREDBCIT)/100;
                         V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
    
@@ -9491,7 +9491,7 @@ BEGIN
          END IF;
       END LOOP;
 
-      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO LÕQUIDO DOS PRODUTOS*/
+      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO L√çQUIDO DOS PRODUTOS*/
       IF NOT (V_ENCARGOLIQUIDO = 'N') THEN
          FOR C_ITEMENCARGO IN (SELECT IE.CDENCARGO AS CDENCARGO, VRITEMENCA, IDENCARGO,
                                       EN.CDCTBLENTREN, EN.CDCTBLSAIDEN
@@ -9664,7 +9664,7 @@ BEGIN
                                              II.NRITPROIMPOS,
                                              II.CDIMPOSTO) LOOP
 
-                  /*IMPOSTOS QUE N√O FORAM GRAVADOS DE ACORDO COM A ORIGEM N√O DEVEM EFETUAR O C¡LCULO*/
+                  /*IMPOSTOS QUE N√ÉO FORAM GRAVADOS DE ACORDO COM A ORIGEM N√ÉO DEVEM EFETUAR O C√ÅLCULO*/
                   IF C_ITEMPROIMPOS.IDVALORINFIT <> W_S THEN
                      IF NOT((C_ITEMPROIMPOS.IDUTILBCPMC = W_S) AND (C_ITEMPROIMPOS.CDIMPOSTONFE = '80')) OR (C_ITEMPROIMPOS.IDUTILBCPMC <> W_S) THEN
 
@@ -9707,7 +9707,7 @@ BEGIN
                            V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
                         ELSE
                            V_TAXABASECALC :=(100 - NVL(C_ITEMPROIMPOS.VRPERREDBCSTIT, 0))/100; 
-                           V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando reduÁ„o da base para no update abaixo utilize o valor adicionando a majoraÁ„o*/
+                           V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando redu√ß√£o da base para no update abaixo utilize o valor adicionando a majora√ß√£o*/
                            V_TAXABASECALC := 1 + (C_ITEMPROIMPOS.VRPERREDBCIT)/100;
                            V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
 
@@ -9797,7 +9797,7 @@ BEGIN
             END IF;
          END LOOP;
       END IF;
-      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO LÕQUIDO DOS PRODUTOS*/
+      /* ROTINA PARA REALIZAR RATEIO DOS ENCARGOS PARAMETRIZADOS POR PESO L√çQUIDO DOS PRODUTOS*/
 
       /* IMPOSTO GERADO COMO ENCARGO NA ENTRADA */
       IF (NVL(V_IDNFORIGVIAXML, 'N') = 'S') THEN
@@ -9958,7 +9958,7 @@ BEGIN
                                              II.NRITPROIMPOS,
                                              II.CDIMPOSTO) LOOP
 
-                  /*IMPOSTOS QUE N√O FORAM GRAVADOS DE ACORDO COM A ORIGEM N√O DEVEM EFETUAR O C¡LCULO*/
+                  /*IMPOSTOS QUE N√ÉO FORAM GRAVADOS DE ACORDO COM A ORIGEM N√ÉO DEVEM EFETUAR O C√ÅLCULO*/
                   IF C_ITEMPROIMPOS.IDVALORINFIT <> W_S THEN
                      IF NOT((C_ITEMPROIMPOS.IDUTILBCPMC = W_S) AND (C_ITEMPROIMPOS.CDIMPOSTONFE = '80')) OR (C_ITEMPROIMPOS.IDUTILBCPMC <> W_S) THEN
 
@@ -10220,7 +10220,7 @@ BEGIN
 
                V_VRIMPOSTO := C_PRODUTO.VRIMPOSTOIT;
 
-               /*IMPOSTO PARA SUBSTITUI«√O TRIBUTARIA*/
+               /*IMPOSTO PARA SUBSTITUI√á√ÉO TRIBUTARIA*/
                V_CDIMPOSTRIB  := null;
                V_IDVRIMPSTRIB := null;
                FOR C_ICMSST IN (SELECT CDIMPOSTO
@@ -10231,8 +10231,8 @@ BEGIN
                END LOOP;
 
                V_VRIMPOSTOST := 0;
-               /*SÛ ir· fazer o c·lculo de outro imposto compondo a base de c·lculo,
-                 se o valor do mesmo n„o estiver zerado OU
+               /*S√≥ ir√° fazer o c√°lculo de outro imposto compondo a base de c√°lculo,
+                 se o valor do mesmo n√£o estiver zerado OU
                  se for o imposto de st, pois o icms pode ter sido recalculado(por ter alguem compondo sua bc)
                  e o imposto st precisa retirar o valor final do st*/
 
@@ -10256,7 +10256,7 @@ BEGIN
                             (CDIMPOSTO    = C_PRODUTO.CDIMPOSTO)   AND
                             (NRITPROIMPOS = C_PRODUTO.NRITPROIMPOS);
 
-                     /*Calcular o fecp novamente caso algum imposto componha a base de c·lculo*/
+                     /*Calcular o fecp novamente caso algum imposto componha a base de c√°lculo*/
                      UPDATE ITEMPROIMPOS
                         SET VRADICFECP    = ROUND((VRBASECALCIT * (NVL(VRADICALIQFECP,0)/100)), 2)
                       WHERE (CDFILIAL     = P_FILIAL)              AND
@@ -10437,7 +10437,7 @@ BEGIN
                      /*RECALCULAR O VALOR DO FECP DO ST CASO EXISTA PARA O ICMS ST*/
                      IF (C_PRODUTO.VRADICALIQFECP IS NOT NULL) AND (C_PRODUTO.VRADICALIQFECP > 0) THEN
                         V_VRADICFECP := ((C_PRODUTO.VRBASECALCIT + ((V_TOTAIMPBCALC+V_TOTAIMPBCDES) * V_TAXABASECALC)) * (C_PRODUTO.VRADICALIQFECP/100));
-                        /*Se o valor do fecp do icms for maior que o valor do fecp do icms st, o valor do fecp st ser· zerado*/
+                        /*Se o valor do fecp do icms for maior que o valor do fecp do icms st, o valor do fecp st ser√° zerado*/
                         IF V_VRADICFECPST > V_VRADICFECP THEN
                            UPDATE ITEMPROIMPOS
                               SET VRADICFECP = 0
@@ -10448,7 +10448,7 @@ BEGIN
                                  (NRITPROIMPOS = C_PRODUTO.NRITPROIMPOS);
                            V_VRADICFECP := 0;
                         ELSE
-                         /*Se o valor do fecp do icms for menor ou igual o valor do fecp do icms st, o valor do fecp st ser· calculado abatendo o valor do fecp do icms*/
+                         /*Se o valor do fecp do icms for menor ou igual o valor do fecp do icms st, o valor do fecp st ser√° calculado abatendo o valor do fecp do icms*/
                            UPDATE ITEMPROIMPOS
                               SET VRADICFECP  = V_VRADICFECP - V_VRADICFECPST
                             WHERE (CDFILIAL     = P_FILIAL)              AND
@@ -10488,7 +10488,7 @@ BEGIN
          WHERE (CDFILIAL   = P_FILIAL) AND
                (NRLANCTONF = P_LANCTONF);
 
-         --TOTALIZA«√O DOS IMPOSTOS
+         --TOTALIZA√á√ÉO DOS IMPOSTOS
          FOR C_IMPOSNFTOT IN (SELECT IT.CDIMPOSTO
                               FROM ITEMPROIMPOS IT
                               WHERE (IT.CDFILIAL   = P_FILIAL) AND
@@ -10673,7 +10673,7 @@ BEGIN
                   V_ALIQUTMP   := NULL;
                   V_UTIBB      := 'N';
 
-                  --integraÁ„o fiscal especifica com Compass_Argentina atraves da importaÁ„o de aliquota do imposto IBB
+                  --integra√ß√£o fiscal especifica com Compass_Argentina atraves da importa√ß√£o de aliquota do imposto IBB
                   --A aliquota de imposto 03(ibb) sera cadastrada na tabela paramintegraibb e tera prioridade sobre o
                   -- cadastro de aliquota realizado em sistema
                   /*IF C_IMPOSNFTOT.CDIMPOSTO = '03' THEN
@@ -10937,7 +10937,7 @@ BEGIN
                ELSE
                   V_ALIQUTMP   := NULL;
                   V_UTIBB      := 'N';
-                  --integraÁ„o fiscal especifica com Compass_Argentina atraves da importaÁ„o de aliquota do imposto IBB
+                  --integra√ß√£o fiscal especifica com Compass_Argentina atraves da importa√ß√£o de aliquota do imposto IBB
                   --A aliquota de imposto 03(ibb) sera cadastrada na tabela paramintegraibb e tera prioridade sobre o
                   -- cadastro de aliquota realizado em sistema
                   /*IF C_IMPOSTONF.CDIMPOSTO = '03' THEN
@@ -11062,7 +11062,7 @@ BEGIN
                                AND IT.NRLANCTONFIT = N.NRLANCTONF) LOOP
 
             INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                           VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Nota de Origem: '|| C_ITEMNOTAFISC.NRNOTA||' (Emiss„o: '|| C_ITEMNOTAFISC.DTEMISSAO||' Total: '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')))|| ' )');
+                           VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Nota de Origem: '|| C_ITEMNOTAFISC.NRNOTA||' (Emiss√£o: '|| C_ITEMNOTAFISC.DTEMISSAO||' Total: '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(C_ITEMNOTAFISC.VRNOTAFISC, 2), '9999999999999.99')))|| ' )');
             V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
          END LOOP;
       END IF;
@@ -11131,7 +11131,7 @@ BEGIN
 
                V_CONTABCALC  := V_VRTOTAITEM - (V_VRTOTAITEM * V_TAXABASECALC);
 
-               /* GRAVAR VALOR CONT¡BIL PARA NOTA FISCAL DE COMPLEMENTO COM O VALOR DA BASE DE C¡LCULO INFORMADA*/
+               /* GRAVAR VALOR CONT√ÅBIL PARA NOTA FISCAL DE COMPLEMENTO COM O VALOR DA BASE DE C√ÅLCULO INFORMADA*/
                IF (V_VRTOTAITEM = 0) THEN
                   V_CONTABCALC := V_BASECALCIT;
                END IF;
@@ -11330,7 +11330,7 @@ BEGIN
 
       END LOOP;
 
-      --TOTALIZA«√O DOS IMPOSTOS
+      --TOTALIZA√á√ÉO DOS IMPOSTOS
       FOR C_IMPOSNFCOMP IN (SELECT IT.CDFILIAL, IT.NRLANCTONF, IT.CDIMPOSTO
                            FROM IMPOSNFTOT IT, IMPOSTO I
                            WHERE IT.CDIMPOSTO  = I.CDIMPOSTO AND
@@ -11575,7 +11575,7 @@ BEGIN
    END IF;
 
    V_DIFERENCA := 0;
-   /* RATEIO DOS ENCARGOS PARA OS PRODUTOS DA NOTA. ESTE RATEIO … NECESS¡RIO PARA A NOTA FISCAL ELETR‘NICA */
+   /* RATEIO DOS ENCARGOS PARA OS PRODUTOS DA NOTA. ESTE RATEIO √â NECESS√ÅRIO PARA A NOTA FISCAL ELETR√îNICA */
    FOR C_ITEMENCARGO IN (SELECT ENCARGO.CDENCARGONFE, SUM(ITEMENCARGO.VRITEMENCA) AS VRITEMENCA
                            FROM ITEMENCARGO, ENCARGO
                           WHERE ITEMENCARGO.CDENCARGO = ENCARGO.CDENCARGO
@@ -12120,7 +12120,7 @@ BEGIN
          /* ENCARGO FRETE */
          IF (C_ITEMENCARGO.CDENCARGONFE = '01') THEN
             IF (C_ITEMENCARGO.VRITEMENCA > 0) THEN
-               /* UPDATE PARA ZERAR TODOS OS PRODUTOS PARA GRAVAR EM SEGUIDA SOMENTE PARA OS PRODUTOS QUE T M PESO LÕQUIDO CADASTRADO*/
+               /* UPDATE PARA ZERAR TODOS OS PRODUTOS PARA GRAVAR EM SEGUIDA SOMENTE PARA OS PRODUTOS QUE T√äM PESO L√çQUIDO CADASTRADO*/
                UPDATE ITEMPRODUTO
                   SET VRFRETEITEM = 0
                 WHERE CDFILIAL = P_FILIAL
@@ -12665,7 +12665,7 @@ BEGIN
 
    CALCULA_IMPOSTO_COMBUSTIVEL(P_FILIAL, P_LANCTONF, 'S', P_CLIENTE, V_PAISORIG, V_ESTAORIG);   
 
---C¡LCULO DO VALOR TOTAL DA NOTA FISCAL
+--C√ÅLCULO DO VALOR TOTAL DA NOTA FISCAL
 
    SELECT SUM(VRITEMENCA)
    INTO   V_SOMAENCA
@@ -12752,7 +12752,7 @@ BEGIN
       V_TOTALNOTA := V_TOTALNOTA + V_ICMSMONORET;
    END IF;
 
-   --VALOR SUBSTITUI«√O TRIBUT¡RIA COM IDENTIFICA«√O PARA ACRESCER AO TOTAL DA NF
+   --VALOR SUBSTITUI√á√ÉO TRIBUT√ÅRIA COM IDENTIFICA√á√ÉO PARA ACRESCER AO TOTAL DA NF
    IF V_IDOPERDEVONF = 'S' THEN
       SELECT NVL(ROUND(SUM(VRIMPOSTOIT + NVL(VRADICFECP, 0)), V_NRDECITOTANF),0)
         INTO   V_SOMAIMPO
@@ -12863,7 +12863,7 @@ BEGIN
       END LOOP;
    END IF;
 
-   /* AJUSTANDO O VALOR DO DIFERIMENTO CASO OCORRA ALGUMA DIFEREN«A DEVIDO AOS ARREDONDAMENTOS */
+   /* AJUSTANDO O VALOR DO DIFERIMENTO CASO OCORRA ALGUMA DIFEREN√áA DEVIDO AOS ARREDONDAMENTOS */
    FOR C_AJUSTA_DIFERIMENTO IN (SELECT IT.NRSEQITPROD, IT.VRIMPOSTOIT, IT.VRIMPOSTOOPERAIT, IT.VRIMPOSTODIFERIT,
                                        IT.VRPERDIFEREIT
                                   FROM ITEMPROIMPOS IT JOIN IMPOSTO IM ON (IT.CDIMPOSTO = IM.CDIMPOSTO)
@@ -13163,7 +13163,7 @@ BEGIN
       AND VRPERREDBCIT > 0.00
       AND NRITPROIMPOS = '2';
 
-   /*ESTE UPDATE ESTA SENDO REALIZADO PARA EVITAR QUE EXISTAM LANCAMENTOS COM BASE DE C¡LCULO E SEM IMPOSTO E SEM ALIQUOTA*/
+   /*ESTE UPDATE ESTA SENDO REALIZADO PARA EVITAR QUE EXISTAM LANCAMENTOS COM BASE DE C√ÅLCULO E SEM IMPOSTO E SEM ALIQUOTA*/
    UPDATE ITEMPROIMPOS
       SET VRBASECALCIT = 0
     WHERE CDFILIAL     = P_FILIAL
@@ -13173,7 +13173,7 @@ BEGIN
       AND VRALIQITEM   = 0.00
       AND VRIMPOSTOIT  = 0.00;
 
-   /*ESTE UPDATE ESTA SENDO REALIZADO PARA EVITAR QUE EXISTAM LANCAMENTOS C”DIGO FISCAL NULO*/
+   /*ESTE UPDATE ESTA SENDO REALIZADO PARA EVITAR QUE EXISTAM LANCAMENTOS C√ìDIGO FISCAL NULO*/
    UPDATE ITEMPROIMPOS
       SET CDFISCALIT   = CASE WHEN VRIMPOSTOIT > 0 THEN 1 ELSE 2 END
     WHERE CDFISCALIT IS NULL
@@ -13216,7 +13216,7 @@ BEGIN
       END IF;
    END LOOP;
 
-   /* GERANDO INFORMA«’ES NA TABELA IMPOSTONF */
+   /* GERANDO INFORMA√á√ïES NA TABELA IMPOSTONF */
    IF V_NRDECITOTANF = 0 THEN
       IF V_IDOPERDEVONF = W_S THEN
          FOR C_IMPOSTONF IN (SELECT IT.CDIMPOSTO,
@@ -13879,7 +13879,7 @@ BEGIN
    END IF;
    */
 
-   --ATUALIZA«√O DO C”DIGO FISCAL DA OPERA«√O NA TABELA DE NOTA FISCAL
+   --ATUALIZA√á√ÉO DO C√ìDIGO FISCAL DA OPERA√á√ÉO NA TABELA DE NOTA FISCAL
 
    SELECT MAX(CDCFOPINFUSU), MAX(DSCFOPINFUSU)
      INTO V_CDCFOPINFUSU,    V_DSCFOPINFUSU
@@ -13948,7 +13948,7 @@ BEGIN
 
 --IDENTIFICADOR DE ERROS E AVISOS
    IF NOT(P_TIPOOPER IN ('09', '10', '12')) THEN /*VALE DE TRANSFERENCIA, SAIDA SEM NOTA, NOTA DE CREDITO/DEBITO*/
-      /* (AVISO) ITEM COM C”DIGO DA SITUA«√O TRIBUT¡RIA INV¡LIDO */
+      /* (AVISO) ITEM COM C√ìDIGO DA SITUA√á√ÉO TRIBUT√ÅRIA INV√ÅLIDO */
       Begin
          SELECT IDERROAVISOFIL
          INTO   V_IDERROAVISO
@@ -13980,7 +13980,7 @@ BEGIN
             (V_IDERROAVISO <> w_N) AND
             (V_IDCONSPARFIS <> w_N);
 
-      /* (AVISO) ITEM COM C”DIGO FISCAL DE OPERA«√O INV¡LIDO */
+      /* (AVISO) ITEM COM C√ìDIGO FISCAL DE OPERA√á√ÉO INV√ÅLIDO */
       Begin
          SELECT IDERROAVISOFIL
          INTO   V_IDERROAVISO
@@ -14013,7 +14013,7 @@ BEGIN
             (V_IDCONSPARFIS <> w_N);
 
       IF NOT(P_TIPOOPER IN ('07', '12')) THEN
-         /* (AVISO) IMPOSTO DO ITEM DA ENTRADA COM C”DIGO FISCAL INV¡LIDO */
+         /* (AVISO) IMPOSTO DO ITEM DA ENTRADA COM C√ìDIGO FISCAL INV√ÅLIDO */
          Begin
             SELECT IDERROAVISOFIL
             INTO   V_IDERROAVISO
@@ -14044,7 +14044,7 @@ BEGIN
                ((CDFISCALIT IS NULL) OR LENGTH(CDFISCALIT) <> 1) AND
                (V_IDERROAVISO <> w_N);
 
-         /* (AVISO) IMPOSTO DO ITEM COM SITUA«√O TRIBUT¡RIA(CST) INV¡LIDA */
+         /* (AVISO) IMPOSTO DO ITEM COM SITUA√á√ÉO TRIBUT√ÅRIA(CST) INV√ÅLIDA */
          Begin
             SELECT IDERROAVISOFIL
             INTO   V_IDERROAVISO
@@ -14076,7 +14076,7 @@ BEGIN
                (V_IDERROAVISO <> w_N)    AND
                (V_IDCONSPARFIS <> w_N);
 
-         /* (AVISO) IMPOSTO DO ITEM COM C”D. FISCAL OPERA«√O - CFOP INV¡LIDO */
+         /* (AVISO) IMPOSTO DO ITEM COM C√ìD. FISCAL OPERA√á√ÉO - CFOP INV√ÅLIDO */
          Begin
             SELECT IDERROAVISOFIL
             INTO   V_IDERROAVISO
@@ -14204,7 +14204,7 @@ BEGIN
                V_IDERROAVISO := Null;
          End;
       END IF;
-      /* (ERRO) SOMA DAS SAÕDAS SEM NOTA FISCAL DIFERE DO VALOR TOTAL DA NOTA */
+      /* (ERRO) SOMA DAS SA√çDAS SEM NOTA FISCAL DIFERE DO VALOR TOTAL DA NOTA */
       UPDATE NOTAFISCAL
       SET IDERROS = w_1||SUBSTR(IDERROS,2,2)
       WHERE CDFILIAL   =  P_FILIAL    AND
@@ -14282,7 +14282,7 @@ BEGIN
 
    END IF;
 
-   -- CALCULANDO PESO LÕQUIDO DOS PRODUTOS DA NOTA FISCAL
+   -- CALCULANDO PESO L√çQUIDO DOS PRODUTOS DA NOTA FISCAL
    BEGIN
 
       SELECT VRPLIQUVOLU
@@ -14368,10 +14368,10 @@ BEGIN
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
 
-   /*201168 - DescriÁ„o de Imposto na NF / 201441 - RETEN«√O DO IR PARA ORG√O PUPLICOS
+   /*201168 - Descri√ß√£o de Imposto na NF / 201441 - RETEN√á√ÉO DO IR PARA ORG√ÉO PUPLICOS
    Codigos de Mensagem:
    RTV - Valor do Imposto
-   RTM - MemÛria de Calculo
+   RTM - Mem√≥ria de Calculo
    RTB - Base Legal*/
    DELETE
      FROM DADOSADIC
@@ -14402,7 +14402,7 @@ BEGIN
                           AND IMPOSTONF.VRIMPOSTONF > 0) LOOP
 
       IF (C_IMPOSTONF.IDGERVRDADOSADIC = 'S') THEN
-         IF (INSTR(C_IMPOSTONF.DSVRDADOSADICTPOP,C_IMPOSTONF.CDTIPOOPER) > 0) OR (C_IMPOSTONF.DSVRDADOSADICTPOP = 'T') THEN -- O TIPO DE OPERA«√O DA NOTA EST¡ NA LISTA OU EST¡ PARAMETRIZADO COMO TODOS
+         IF (INSTR(C_IMPOSTONF.DSVRDADOSADICTPOP,C_IMPOSTONF.CDTIPOOPER) > 0) OR (C_IMPOSTONF.DSVRDADOSADICTPOP = 'T') THEN -- O TIPO DE OPERA√á√ÉO DA NOTA EST√Å NA LISTA OU EST√Å PARAMETRIZADO COMO TODOS
             IF (C_IMPOSTONF.IDTPINFODADOSADIC = 'V') THEN --Valor do Imposto
                INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, CDMENSAGEM, DSDADOADIC)
                               VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'RTV', 'Valor '||C_IMPOSTONF.SGIMPOSTO||': '||C_IMPOSTONF.VRIMPOSTONF);
@@ -14440,7 +14440,7 @@ BEGIN
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;*/
 
---ATUALIZA«√O DO C”DIGO FISCAL DA OPERA«√O NA TABELA DE NOTA FISCAL
+--ATUALIZA√á√ÉO DO C√ìDIGO FISCAL DA OPERA√á√ÉO NA TABELA DE NOTA FISCAL
 
    SELECT COUNT(DISTINCT CDFISOPEITEM), MAX(CDFISOPEITEM)
    INTO   V_COUNT                     , V_CDFISOPENTF
@@ -14494,7 +14494,7 @@ BEGIN
    END IF;
 
    IF V_CDINTEGRACAO IS NOT NULL THEN
---INCLUS√O DOS ENCARGOS DA NF EM CASO DE IMPORTA«√O
+--INCLUS√ÉO DOS ENCARGOS DA NF EM CASO DE IMPORTA√á√ÉO
       INSERT INTO ITEMENCARGO
       (CDFILIAL, NRLANCTONF, CDENCARGO, VRITEMENCA)
       (SELECT P_FILIAL, P_LANCTONF, CDENCARGO, 0 AS VRITEMENCA
@@ -14534,10 +14534,10 @@ BEGIN
    END IF;
 
 
-   /* ESTA ROTINA ABAIXO SERVE PARA ATUALIZAR O VALOR CONT¡BIL E BRUTO DOS PRODUTOS COM A DIFEREN«A
-      DE CENTAVOS ENTRE O VALOR DOS IMPOSTOS POR ÕTEM E A SUA RESPECTIVA TOTALIZA«√O. ESTA DIFEREN«A
-      … IGNORADA NO FECHAMENTO DA NF CASO O CLIENTE TRABALHE COM UM N⁄MERO MENOR DE CASAS DECIMAIS E
-      PROVOCA ERROS NA CONTABILIZA«√O*/
+   /* ESTA ROTINA ABAIXO SERVE PARA ATUALIZAR O VALOR CONT√ÅBIL E BRUTO DOS PRODUTOS COM A DIFEREN√áA
+      DE CENTAVOS ENTRE O VALOR DOS IMPOSTOS POR √çTEM E A SUA RESPECTIVA TOTALIZA√á√ÉO. ESTA DIFEREN√áA
+      √â IGNORADA NO FECHAMENTO DA NF CASO O CLIENTE TRABALHE COM UM N√öMERO MENOR DE CASAS DECIMAIS E
+      PROVOCA ERROS NA CONTABILIZA√á√ÉO*/
 
    IF (V_NRDECITOTANF <> 2) AND (V_IDOPERDEVONF <> w_S) THEN
       FOR C_ATUAVRCONT IN (SELECT T.CDIMPOSTO, 
@@ -14770,18 +14770,18 @@ BEGIN
    END IF;
 
 
-   /*PREENCHENDO A TABELA DADOSADIC DE ACORDO COM OS VALORES DO ADICIONAL DE ALÕQUOTA DO FECP*/
+   /*PREENCHENDO A TABELA DADOSADIC DE ACORDO COM OS VALORES DO ADICIONAL DE AL√çQUOTA DO FECP*/
    DELETE
      FROM DADOSADIC
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF
-      AND UPPER(DSDADOADIC) LIKE 'ADICIONAL DE ALÕQUOTA DO IMPOSTO % DE % (FUNDO ESTADUAL DE COMBATE A POBREZA):%';
+      AND UPPER(DSDADOADIC) LIKE 'ADICIONAL DE AL√çQUOTA DO IMPOSTO % DE % (FUNDO ESTADUAL DE COMBATE A POBREZA):%';
 
    V_STRVRADICALIQFECP := NULL;
    V_STRVRADICFECP := NULL;
 
    
-   /* GRAVA INFORMA«’ES DO IPI DEVOLVIDO DO PRODUTO */
+   /* GRAVA INFORMA√á√ïES DO IPI DEVOLVIDO DO PRODUTO */
    FOR C_IPIDEVOL IN (SELECT I.NRSEQITPROD, II.VRIMPOSTOIT, I.DSINFADICPROD
                         FROM ITEMPRODUTO I, ITEMPROIMPOS II,
                              IMPOSTONFE IP, IMPOSTO IM
@@ -14841,7 +14841,7 @@ BEGIN
          (P_FILIAL, 
           P_LANCTONF, 
           V_DADOADIC,
-          'Adicional de alÌquota do imposto '||C_VRADICALIQFECP.CDIMPOSTONFE||' de '||V_STRVRADICALIQFECP||'% (Fundo Estadual de Combate a Pobreza): R$ '||V_STRVRADICFECP);
+          'Adicional de al√≠quota do imposto '||C_VRADICALIQFECP.CDIMPOSTONFE||' de '||V_STRVRADICALIQFECP||'% (Fundo Estadual de Combate a Pobreza): R$ '||V_STRVRADICFECP);
 
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END LOOP;
@@ -14969,7 +14969,7 @@ BEGIN
       IF V_IDORIGDESTNF = w_L THEN
          V_DESCLANC := 'NF: '||P_LANCTONF||' - '||SUBSTR(V_NMTIPOOPER,1,25)||' - '||SUBSTR(V_NMFILIRECE,1,15);
       ELSE
-         V_DESCLANC := 'LANC. ORIGEM: '||V_NRINSJURNF||' N∫'||P_LANCTONF||' SERIE '||V_SERIE;
+         V_DESCLANC := 'LANC. ORIGEM: '||V_NRINSJURNF||' N¬∫'||P_LANCTONF||' SERIE '||V_SERIE;
       END IF;
 
       SELECT COUNT(*)
@@ -15045,7 +15045,7 @@ BEGIN
                                      PF.CDFILIAL    = V_CDFILIEMIT AND
                                      PF.CDPRODUTO   = P.CDPRODESTO AND
                                      NVL(IP.IDATUESTPROD, 'S') = 'S') LOOP
-            --AlteraÁ„o para verificar se o CFOP atualiza estoque
+            --Altera√ß√£o para verificar se o CFOP atualiza estoque
 
             V_ATUPORCFOP := w_S;
             V_CFOPTPOPER := 0;
@@ -15093,7 +15093,7 @@ BEGIN
                   V_ATUPORCFOP := w_N;
                END IF;
             END IF;
-            --AlteraÁ„o para verificar se o CFOP atualiza estoque
+            --Altera√ß√£o para verificar se o CFOP atualiza estoque
             IF (V_ATUPORCFOP = w_S) THEN
                IF (C_ITLANCTOEST.IDCNTRESTOQ = w_S) THEN
                   UPDATE ITEMPRODUTO
@@ -15258,7 +15258,7 @@ BEGIN
                END IF;     /* FIM DO IF DO SISTEMA */
             END IF;
          END LOOP;
-      ELSE  /* DEMAIS SISTEMAS QUE N√O SEJAM EXPEDICAO NEM GEST√O DE VENDAS */
+      ELSE  /* DEMAIS SISTEMAS QUE N√ÉO SEJAM EXPEDICAO NEM GEST√ÉO DE VENDAS */
          BEGIN
             SELECT MAX(CDFILIAL)
               INTO V_CDFILIORIG
@@ -15300,7 +15300,7 @@ BEGIN
                                      NVL(IP.IDATUESTPROD, 'S') = 'S') LOOP
 
 
-            --AlteraÁ„o para verificar se o CFOP atualiza estoque
+            --Altera√ß√£o para verificar se o CFOP atualiza estoque
 
             V_ATUPORCFOP := w_S;
             V_CFOPTPOPER := 0;
@@ -15348,7 +15348,7 @@ BEGIN
                   V_ATUPORCFOP := w_N;
                END IF;
             END IF;
-            --AlteraÁ„o para verificar se o CFOP atualiza estoque
+            --Altera√ß√£o para verificar se o CFOP atualiza estoque
             IF (V_ATUPORCFOP = w_S) THEN
                UPDATE ITEMPRODUTO
                SET CDPRODMOVI = C_ITLANCTOEST.CDPRODESTO
@@ -15446,7 +15446,7 @@ BEGIN
                       C_ITLANCTOEST.NRSUBLOTE,V_IDDOCESTOQ, C_ITLANCTOEST.IDORIGEMPROD);
                END IF;
 
-               /* Se NF Remessa para IndustrializaÁ„o e OperaÁ„o Atualiza Estoque */
+               /* Se NF Remessa para Industrializa√ß√£o e Opera√ß√£o Atualiza Estoque */
                IF (V_IDREMESSAINDU = 'S') AND (V_IDATUESTTPOP = 'S') THEN
 
                   IF V_IDORIGDESTNF = 'C' THEN
@@ -15547,7 +15547,7 @@ BEGIN
                             V_NRLANESTENTR,
                             W_2,
                             P_INIVALID,
-                            'TransferÍncia de Estoque ' || V_NRLANESTENTR,
+                            'Transfer√™ncia de Estoque ' || V_NRLANESTENTR,
                             V_CDFILIEMIT,
                             P_CDOPERADOR);
 
@@ -15635,11 +15635,11 @@ BEGIN
                         V_TOTABRUT,
                         C_ITLANCTOEST.IDORIGEMPROD);
                   ELSE
-                     /* Se o fornecedor da nota fiscal for agente de terceirizaÁ„o */
+                     /* Se o fornecedor da nota fiscal for agente de terceiriza√ß√£o */
                      IF NOT V_CDFILIAGENT IS NULL THEN
                         IF V_CDFILIORIG IS NULL THEN
                            IF V_BOLANESTENTRAG THEN
-                              /* Gerando o registro na tabela LANCTOESTOQ para a entrada na filial relacionada ao agente de terceirizaÁ„o */
+                              /* Gerando o registro na tabela LANCTOESTOQ para a entrada na filial relacionada ao agente de terceiriza√ß√£o */
                               NOVO_CODIGO_NT('LANCNF/FILIAL' || V_CDFILIAGENT, V_NRLANCTONFAG);
                               V_NRLANCTONFAG := SUBSTR(V_NRLANCTONFAG, 11, 10);
 
@@ -15658,7 +15658,7 @@ BEGIN
                               END;
 
                               IF (V_TPOPERRETORNO IS NULL) THEN
-                                 RAISE_APPLICATION_ERROR(-20501, 'Tipo de operaÁ„o para geraÁ„o de lanÁamento de estoque deve ser informado - (Par‚metros para Documentos Fiscais de SaÌda - Operador LogÌstico)', TRUE);
+                                 RAISE_APPLICATION_ERROR(-20501, 'Tipo de opera√ß√£o para gera√ß√£o de lan√ßamento de estoque deve ser informado - (Par√¢metros para Documentos Fiscais de Sa√≠da - Operador Log√≠stico)', TRUE);
                               END IF;
 
                               INSERT INTO NOTAFISCAL
@@ -15692,7 +15692,7 @@ BEGIN
                                   V_NRLANCTONFAG,
                                   'E',
                                   P_INIVALID,
-                                  'NF Remessa Armazenagem - lanÁ. ' || V_CDFILIEMIT || ' ' || P_LANCTONF,
+                                  'NF Remessa Armazenagem - lan√ß. ' || V_CDFILIEMIT || ' ' || P_LANCTONF,
                                   V_CDFILIAGENT,
                                   P_CDOPERADOR);
 
@@ -15806,12 +15806,12 @@ BEGIN
 
             IF V_EXISTDSDADOSADIC = 0 THEN
                INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                              VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Permite o aproveitamento do credito do ICMS no valor de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')))|| ' corresp. a alÌquota de '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99'))) || '% conf. Art.23 da LC 123/06.');
+                              VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'Permite o aproveitamento do credito do ICMS no valor de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')))|| ' corresp. a al√≠quota de '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99'))) || '% conf. Art.23 da LC 123/06.');
 
                V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
             ELSE
                UPDATE DADOSADIC
-                  SET DSDADOADIC = 'Permite o aproveitamento do credito do ICMS no valor de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')))|| ' corresp. a alÌquota de '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99'))) || '% conf. Art.23 da LC 123/06.'
+                  SET DSDADOADIC = 'Permite o aproveitamento do credito do ICMS no valor de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_APROVICMS, 2), '9999999999999.99')))|| ' corresp. a al√≠quota de '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_ALIQAPROVICMS, 2), '9999999999999.99'))) || '% conf. Art.23 da LC 123/06.'
                  WHERE CDFILIAL = P_FILIAL
                    AND NRLANCTONF = P_LANCTONF
                    AND DSDADOADIC LIKE 'Permite o aproveitamento do credito do ICMS no valor de R$ %';
@@ -15845,11 +15845,11 @@ BEGIN
         AND NRLANCTONF = P_LANCTONF
         AND DSDADOADIC LIKE 'NF emitida de acordo com o Regime Especial - Portaria CAT 37/2002';		
 	END IF;
-   /*Mensagem referente ao ICMS 60 - c·lculo realizado na CALCULA_ICMS60*/
+   /*Mensagem referente ao ICMS 60 - c√°lculo realizado na CALCULA_ICMS60*/
    DELETE FROM DADOSADIC
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF
-      AND DSDADOADIC LIKE 'ICMS cobrado anteriormente por substituiÁ„o tribut·ria: BC %';
+      AND DSDADOADIC LIKE 'ICMS cobrado anteriormente por substitui√ß√£o tribut√°ria: BC %';
     
      SELECT SUM(VRBCITENTR), SUM(VRIMPITENTR)
        INTO V_VRBCITENTR, V_VRIMPITENTR
@@ -15867,11 +15867,11 @@ BEGIN
              FROM DADOSADIC
             WHERE CDFILIAL = P_FILIAL
               AND NRLANCTONF = P_LANCTONF
-              AND DSDADOADIC LIKE 'ICMS cobrado anteriormente por substituiÁ„o tribut·ria: BC %';
+              AND DSDADOADIC LIKE 'ICMS cobrado anteriormente por substitui√ß√£o tribut√°ria: BC %';
 
           IF V_EXISTDSDADOSADIC = 0 THEN
              INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                            VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS cobrado anteriormente por substituiÁ„o tribut·ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')))|| ' - Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99'))));
+                            VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS cobrado anteriormente por substitui√ß√£o tribut√°ria: BC '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRBCITENTR, 2), '9999999999999.99')))|| ' - Valor '|| DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRIMPITENTR, 2), '9999999999999.99'))));
              V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
           END IF;
       END IF;
@@ -15880,7 +15880,7 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'N˙mero do Pedido:%';
+         AND DSDADOADIC LIKE 'N√∫mero do Pedido:%';
 
          FOR C_NRPEDIDO IN (SELECT DISTINCT I.NRPEDIDO
                               FROM ITEMPRODUTO I LEFT JOIN PEDIDO P ON (I.CDFILIALPED = P.CDFILIAL)
@@ -15901,7 +15901,7 @@ BEGIN
 
 		    IF (V_DESCNRPEDIDO IS NOT NULL) OR (TRIM(V_DESCNRPEDIDO) <> '') THEN
             INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                  VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'N˙mero do Pedido: '||V_DESCNRPEDIDO);
+                  VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'N√∫mero do Pedido: '||V_DESCNRPEDIDO);
             V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    		 END IF;
    END IF;
@@ -15909,7 +15909,7 @@ BEGIN
    DELETE FROM DADOSADIC
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF
-      AND DSDADOADIC LIKE 'O valor da carga tribut·ria do ICMS de S„o Paulo È de R$%';
+      AND DSDADOADIC LIKE 'O valor da carga tribut√°ria do ICMS de S√£o Paulo √© de R$%';
 
    BEGIN
       SELECT SUM(VRIMPOSTOIT)
@@ -15927,7 +15927,7 @@ BEGIN
 
    IF V_VRCARGATRIB > 0 THEN
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'O valor da carga tribut·ria do ICMS de S„o Paulo È de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')))||'.');
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'O valor da carga tribut√°ria do ICMS de S√£o Paulo √© de R$ '||DECODE(SUBSTR(LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')), 1, 1), '.', '0'||LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')), LTRIM(TO_CHAR(ROUND(V_VRCARGATRIB, 2), '9999999999999.99')))||'.');
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
 
@@ -15942,7 +15942,7 @@ BEGIN
                         AND IP.NRLANCTONF = P_LANCTONF
                         AND IP.CDPRODUTO = P.CDPRODUTO)
       LOOP
-         /*FOR C_IMP IN (SELECT IMP.SGIMPOSTO, ROUND(II.VRIMPOSTOIT, 2) AS VRIMPOSTOIT  -- SubstituiÁ„o desse bloco pelo de baixo a pedido do Walter Louback - Pode retirar
+         /*FOR C_IMP IN (SELECT IMP.SGIMPOSTO, ROUND(II.VRIMPOSTOIT, 2) AS VRIMPOSTOIT  -- Substitui√ß√£o desse bloco pelo de baixo a pedido do Walter Louback - Pode retirar
                           FROM ITEMPROIMPOS II, IMPOSTO IMP
                          WHERE II.CDFILIAL = P_FILIAL
                            AND II.NRLANCTONF = P_LANCTONF
@@ -15977,7 +15977,7 @@ BEGIN
          END IF;
          IF (V_DSPRODEMISIMP IS NOT NULL) AND (V_VRLIQUIDO > 0) THEN
             UPDATE ITEMPRODUTO
-               SET DSPRODEMIS = C_PROD.CDPRODEMIS||' - '||C_PROD.NMPRODUTO||V_DSPRODEMISIMP||' Valor LÌquido: R$'||TRIM(TO_CHAR(ROUND(V_VRLIQUIDO, 2), '9999999999999.99'))
+               SET DSPRODEMIS = C_PROD.CDPRODEMIS||' - '||C_PROD.NMPRODUTO||V_DSPRODEMISIMP||' Valor L√≠quido: R$'||TRIM(TO_CHAR(ROUND(V_VRLIQUIDO, 2), '9999999999999.99'))
              WHERE CDFILIAL = P_FILIAL
                AND NRLANCTONF = P_LANCTONF
                AND NRSEQITPROD = C_PROD.NRSEQITPROD;
@@ -16000,11 +16000,11 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'ICMS monof·sico prÛprio: BC%';
+         AND DSDADOADIC LIKE 'ICMS monof√°sico pr√≥prio: BC%';
 
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof·sico prÛprio: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONO, 4), '9999999999999.9999'))||
-                                                              '; AlÌquota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONO, '9999999999999.9999'))||
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof√°sico pr√≥prio: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONO, 4), '9999999999999.9999'))||
+                                                              '; Al√≠quota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONO, '9999999999999.9999'))||
                                                               '; ICMS mono: R$ '||TRIM(TO_CHAR(ROUND(V_ICMSMONO, 2), '9999999999999.99')));
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
@@ -16031,11 +16031,11 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'ICMS monof·sico prÛprio: BC%';
+         AND DSDADOADIC LIKE 'ICMS monof√°sico pr√≥prio: BC%';
 
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof·sico prÛprio: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONO, 4), '9999999999999.9999'))||
-                                                              ' (em litros); AlÌquota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONO, '9999999999999.9999'))||
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof√°sico pr√≥prio: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONO, 4), '9999999999999.9999'))||
+                                                              ' (em litros); Al√≠quota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONO, '9999999999999.9999'))||
                                                               '; ICMS mono: R$ '||TRIM(TO_CHAR(ROUND(V_ICMSMONO, 2), '9999999999999.99')));
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
@@ -16044,11 +16044,11 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'ICMS monof·sico sujeito a retenÁ„o: BC%';
+         AND DSDADOADIC LIKE 'ICMS monof√°sico sujeito a reten√ß√£o: BC%';
 
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof·sico sujeito a retenÁ„o: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONORET, 4), '9999999999999.9999'))||
-                                                              ' (em litros); AlÌquota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONORET, '9999999999999.9999'))||
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof√°sico sujeito a reten√ß√£o: BC '||TRIM(TO_CHAR(ROUND(V_BCICMSMONORET, 4), '9999999999999.9999'))||
+                                                              ' (em litros); Al√≠quota: R$ '||TRIM(TO_CHAR(V_ALIQICMSMONORET, '9999999999999.9999'))||
                                                               '; ICMS mono: R$ '||TRIM(TO_CHAR(ROUND(V_ICMSMONORET, 2), '9999999999999.99')));
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
@@ -16072,10 +16072,10 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'ICMS monof·sico sobre combustÌveis diferido conforme ConvÍnio ICMS 199/2022%';
+         AND DSDADOADIC LIKE 'ICMS monof√°sico sobre combust√≠veis diferido conforme Conv√™nio ICMS 199/2022%';
 
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof·sico sobre combustÌveis diferido conforme ConvÍnio ICMS 199/2022;');
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof√°sico sobre combust√≠veis diferido conforme Conv√™nio ICMS 199/2022;');
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
    
@@ -16098,10 +16098,10 @@ BEGIN
       DELETE FROM DADOSADIC
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF
-         AND DSDADOADIC LIKE 'ICMS monof·sico sobre combustÌveis cobrado anteriormente conforme ConvÍnio ICMS 199/2022%';
+         AND DSDADOADIC LIKE 'ICMS monof√°sico sobre combust√≠veis cobrado anteriormente conforme Conv√™nio ICMS 199/2022%';
 
       INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, DSDADOADIC)
-                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof·sico sobre combustÌveis cobrado anteriormente conforme ConvÍnio ICMS 199/2022;');
+                     VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monof√°sico sobre combust√≠veis cobrado anteriormente conforme Conv√™nio ICMS 199/2022;');
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
    /*197863*/
