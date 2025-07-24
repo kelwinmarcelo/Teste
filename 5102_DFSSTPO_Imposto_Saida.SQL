@@ -129,7 +129,7 @@ IS
    V_IDMODBCSTNFEIT    CODSITUTRIBNFE.IDMODBCSTNFE%TYPE;
    V_CDTPCRPICOSTNFEIT CODSITUTRIBNFE.CDTPCRPICOSTNFE%TYPE;
    V_CDNATUBCPCSTNFEIT CODSITUTRIBNFE.CDNATUBCPCSTNFE%TYPE;
-	
+
    V_IDINTEREST   VARCHAR2(01);
    V_IDCONSPARFIS VARCHAR2(01);
    V_CDFISCOPERSN ITEMPRODUTO.CDFISCOPERSN%TYPE;
@@ -202,6 +202,7 @@ IS
    V_SOMAQITEMPROD  NUMBER;
    V_SOMAVRBRUTITEM NUMBER;
    V_SOMAVRCONTITEM NUMBER;
+   V_NRSEQITPRODORIG NUMBER;
 
    V_CDGRUPOFISC  VARCHAR2(03);
    V_CDGRPFISCSV  VARCHAR2(03);
@@ -261,7 +262,7 @@ IS
    V_IDDIFALIQCUSPRREGRA VARCHAR2(10);
    V_CFOPINFUSU          VARCHAR2(01);
    V_CFOP1DIGT           VARCHAR2(01);
-   
+
 
    w_A            CHAR(1):= 'A';
    w_C            CHAR(1):= 'C';
@@ -504,7 +505,7 @@ IS
    V_CDCOMPST        VARCHAR2(20);
    V_CDRESTST        VARCHAR2(20);
    V_CDNATUREC       VARCHAR2(10);
-   
+
    /*variáveis mensagem ICMS 60*/
    V_VRBCITENTR      FLOAT;
    V_VRIMPITENTR     FLOAT;
@@ -522,7 +523,7 @@ IS
    V_FETBASECALC   FLOAT;
    V_FETVRIMPOSTO  FLOAT;
    V_FETALIQUOTA   VARCHAR(255);
-   
+
    V_DSDADOFISCO     VARCHAR2(255);
    V_QTDCDPRODUTO    FLOAT;
    V_VRCARGATRIB     FLOAT;
@@ -778,7 +779,7 @@ BEGIN
       V_DADOADICFISCO := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADICFISCO) + 1)),3,0);
       /*GERA O PROXIMO SEQUENCIAL A SER INSERIDO*/
    END IF;
-   
+
    FOR C_MENSINSC IN (SELECT M.CDMENSAGEM, I.DSMENSINSCRESTA
                         FROM MENSINSCRESTAD I LEFT JOIN MENSAGEM M ON (M.CDMENSAGEM = I.CDMENSAGEM)
                        WHERE (I.CDEMPRESA = P_EMPRESA)
@@ -885,7 +886,7 @@ BEGIN
       WHEN TOO_MANY_ROWS THEN
          RAISE_APPLICATION_ERROR(-20501, 'Operação bloqueada. Existem mais de um posto de recolhimento de embalagens cadastradas no sistema.', TRUE);
    END;
-     
+
    IF (V_DSENDEDEVOEMBA IS NOT NULL) THEN
       INSERT INTO DADOSADIC
          (CDFILIAL, 
@@ -1307,7 +1308,7 @@ BEGIN
          SET CDINSCESTAST = V_CDINSCESTAST
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF;
-         
+
       FOR C_MENSINSCESTAST IN (SELECT M.CDMENSAGEM, I.DSMENSINSCESTAST
                                  FROM MENSINSCESTAST I LEFT JOIN MENSAGEM M ON (M.CDMENSAGEM = I.CDMENSAGEM)
                                 WHERE I.CDEMPRESA = P_EMPRESA
@@ -1392,7 +1393,7 @@ BEGIN
          V_ESTADEST := V_ESTAORIG;
          V_MUNIDEST := V_MUNIORIG;
       END IF;
-      
+
       BEGIN
          SELECT NVL(IDPRESENCIAL, w_9)
            INTO V_IDPRESENCIAL
@@ -1811,7 +1812,7 @@ BEGIN
       /*IF (C_ITEMPRODINF.IDPRODPERIG = 'N') OR (C_ITEMPRODINF.IDPRODPERIG IS NULL) THEN
          V_DSINFADICPROD := '';
       END IF; - issue 490685*/
-      	  
+
       IF (C_ITEMPRODINF.DSINFADICPROD IS NOT NULL) OR (TRIM(C_ITEMPRODINF.DSINFADICPROD) <> '') THEN
          IF (NVL(INSTR(V_DSINFADICPROD, C_ITEMPRODINF.DSINFADICPROD) = 0, TRUE)) THEN
             V_DSINFADICPROD := V_DSINFADICPROD || ' ' || C_ITEMPRODINF.DSINFADICPROD || ' | ' ;
@@ -1844,7 +1845,7 @@ BEGIN
          V_IDPRODPERIG := 'S';
       END IF;
    END LOOP;
-   
+
    /* GRAVA MENSAGEM REFERENTE A PRODUTO PERIGOSO */
    IF V_IDPRODPERIG = 'S' THEN
       V_MSGPRODPERIG := 'Declaro que os produtos perigosos estão adequadamente ' ||
@@ -1862,7 +1863,7 @@ BEGIN
          WHEN NO_DATA_FOUND THEN
             V_GRAVAMSGPRODPERIG := 0;
       END;
-      
+
       IF (V_GRAVAMSGPRODPERIG = 0) THEN
          INSERT INTO DADOSADIC(CDFILIAL, NRLANCTONF, NRDADOADIC, CDMENSAGEM, DSDADOADIC)
                         VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, NULL, V_MSGPRODPERIG);
@@ -2361,7 +2362,7 @@ BEGIN
                         DELETE ALIQTEMP
                          WHERE NRALIQTEMP = V_ALIQTEMP;
                      END IF;
-                    
+
                      /* Buscar CFOP do ICMS caso seja simples nacional para considerar na consulta da tabela*/
 
                      CALCULA_ALIQUOTA_SN(P_EMPRESA,
@@ -2995,7 +2996,7 @@ BEGIN
                               V_VRADICFECPSTAUX := 0;
                               V_VRBASEICMS := 0;
                            END IF;
-                           
+
                            /*198639, 200299*/
                            IF V_VRBASEICMS > 0 THEN
                               DELETE ALIQTEMP
@@ -3055,7 +3056,7 @@ BEGIN
                                WHERE NRALIQTEMP = V_ALIQTEMP;
                            END IF;
                            /*198639, 200299*/
-                           
+
                            V_VRIMPOSTOST := V_VRIMPOSTOST + V_VRIMPOSST;
                            V_VRADICFECPST := V_VRADICFECPST + V_VRADICFECPSTAUX;
                         END LOOP;
@@ -3437,7 +3438,6 @@ BEGIN
                         V_DSCDFISOPEITREGRA := SUBSTR(DESCRICAO_CFOP(V_CDFISCOPERREGRA),1,45);
                      END IF;
 
-
                      INSERT INTO ITEMPROIMPOS(
                         CDFILIAL, NRLANCTONF, NRSEQITPROD, CDIMPOSTO, NRITPROIMPOS, CDFISCALIT,
                         CDSITUTRIBIT, CDFISCOPERIT, CDSUFXCFOPIT, VRALIQITEM, VRPERREDBCIT, VRPARDEDIT,
@@ -3460,9 +3460,11 @@ BEGIN
                         V_ALIQICMSDEST, V_ALIQFECPDEST, NVL(V_IDIMPODESONERA, 'N'), NVL(V_IDCONSDESONVRNF, 'N'), V_CDBENEFFISCAL,
                         NVL(V_IDCONSDIFALIQ, 'N'), V_CDCOMPST, V_CDRESTST, V_CDNATUREC, V_PREDBCSTIT, V_VRIMPOSTOREP, V_IDNUTREDBCFECP,
                         V_VRIMPBCICMS, V_VRCARGAEXPRESSA);
+                     
 
                      IF (V_PREDBCTMP > 0) AND (V_PBCSUBTRIB = 0) AND ((V_VRALIQICMSCBSP IS NULL) OR (V_VRALIQICMSCBSP = 0)) THEN
                         IF V_SITUTRIBPR = '060' THEN
+                           
                            INSERT INTO ITEMPROIMPOS(
                               CDFILIAL, NRLANCTONF, NRSEQITPROD, CDIMPOSTO, NRITPROIMPOS, CDFISCALIT,
                               CDSITUTRIBIT, CDFISCOPERIT, CDSUFXCFOPIT, VRALIQITEM, VRPERREDBCIT, VRPARDEDIT,
@@ -3477,7 +3479,7 @@ BEGIN
                               V_IDMODBCNFE, V_IDMODBCSTNFE, V_CDTPCRPICOSTNFE, V_CDNATUBCPCSTNFE, V_IDMOTIDESSTNFE, V_CDSIMPLESNACIONAL,
                               V_CDFAIXA, V_BCICMSSTRETIDO, V_VRICMSSTRETIDO, V_CDREGRAITALIQ, C_INCIDENCIA.CDDETALHEPROD,
                               V_VRIMPOSTOVISUIT, C_INCIDENCIA.CDENQLEGALIPI, C_INCIDENCIA.CDCEST, V_IDIMPSTCARGTRIB);
-                        ELSE
+                        ELSE                        
                            INSERT INTO ITEMPROIMPOS(
                               CDFILIAL, NRLANCTONF, NRSEQITPROD, CDIMPOSTO, NRITPROIMPOS, CDFISCALIT,
                               CDSITUTRIBIT, CDFISCOPERIT, CDSUFXCFOPIT, VRALIQITEM, VRPERREDBCIT, VRPARDEDIT,
@@ -4394,7 +4396,7 @@ BEGIN
        WHERE (NRLANCTONF  = P_LANCTONF) AND
              (CDFILIAL    = P_FILIAL)   AND
              (VRADICFECP < 0);
-             
+
       --CÁLCULO DO VALOR DOS IMPOSTOS QUE CONTÉM OUTROS IMPOSTOS NA SUA BASE DE CÁLCULO
       FOR C_PRODUTO IN (SELECT IP.NRSEQITPROD AS NRSEQITPROD,
                                II.CDIMPOSTO,
@@ -4655,7 +4657,7 @@ BEGIN
                      V_VRBASEICMS := 0;
                      V_VRADICFECPSTAUX := 0;
                   END IF;
-                  
+
                   /*198639, 200299*/
                   IF V_VRBASEICMS > 0 THEN
                      DELETE ALIQTEMP
@@ -4715,7 +4717,7 @@ BEGIN
                       WHERE NRALIQTEMP = V_ALIQTEMP;
                   END IF;
                   /*198639, 200299*/
-                  
+
                   V_VRIMPOSTOST := V_VRIMPOSTOST + V_VRIMPOSST;
                END LOOP;
 
@@ -4755,7 +4757,7 @@ BEGIN
                   V_TAXAALIQUOTA := (C_PRODUTO.VRALIQITEM/100);
                   V_VRIMPOSTO := ((C_PRODUTO.VRBASECALCIT + (((V_TOTAIMPBCALC + V_TOTAIMPBCDES) * V_TAXABASECALC) * V_TAXABCSUBSTR)) * V_TAXAALIQUOTA);
                END IF;
-               
+
                -- ESSA CONDIÇÃO SERÁ FEITA PORQUE A BASE DE CÁLCULO NÃO SERÁ ALTERADO QUANDO O PRODUTO TIVER CONSIDERANDO 
                -- O DIFERENCIAL DE ALÍQUOTA DO ICMS, ISTO PORQUE A BASE DE CÁLCULO JÁ FOI CALCULADA NA PROCEDURE CONSIDERA_DIFAL_ICMS
                IF ((C_PRODUTO.IDCONSDIFALIQ = W_S) OR (C_PRODUTO.VRIMPOSTOREP IS NOT NULL)) THEN     
@@ -5229,7 +5231,7 @@ BEGIN
                                              NULL, NULL, NULL, NULL, NULL, NULL, C_PRODUTO.IDORIGEMPROD);
                         END IF;
                      END IF;
-                     
+
                      BEGIN
                         SELECT MAX(VRALIQUTMP), MAX(VRADICALIQFECP)
                           INTO V_ALIQICMSDEST, V_ALIQFECPDEST
@@ -5757,6 +5759,10 @@ BEGIN
          IF V_BASECALCIT < 0 THEN
             V_BASECALCIT := 0;
          END IF;
+         
+         IF (P_LANCTONF = '0000196011') THEN
+            RAISE_APPLICATION_ERROR(-20501,'LUCAS -  '||V_PRODUENCARGO|| ' - PRIMO', TRUE);
+         END IF;
 
          V_CONTABCALC := (V_LIQUIDO + V_PRODUENCARGO) - ((V_LIQUIDO + V_PRODUENCARGO) * V_TAXABASECALC);
          V_PERDBCALC  := 100 - V_PREDBCTMP;
@@ -5947,7 +5953,7 @@ BEGIN
                                      AND NRLANCTONF = P_LANCTONF) LOOP
          GERA_ICMS_INTERESTADUAL(P_FILIAL, P_LANCTONF, C_ITEMPRODUTO_DIFAL.NRSEQITPROD, P_INIVALID);
       END LOOP;
-      
+
       BEGIN
          SELECT NVL(IDCALCDIFAL, w_S)
            INTO V_IDCALCDIFAL
@@ -5999,7 +6005,7 @@ BEGIN
             END IF;
          END LOOP;
       END IF;
-      
+
       SELECT MAX(NRDADOADIC)
         INTO V_DADOADIC
         FROM DADOSADIC
@@ -6058,9 +6064,13 @@ BEGIN
                         WHERE CDFILIAL    = C_ITEMNOTAFISC.CDFILIALIT                                          AND
                               NRLANCTONF  = C_ITEMNOTAFISC.NRLANCTONFIT                                        AND
                               CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
-                              ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
+                             ((NRSEQITPROD = C_ITEMPROD.NRSEQITPRODORIG AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                             (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                             (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
+                             (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));                              
+                              /*ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
                               (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
-                              (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                              (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));*/
 
                        SELECT NVL(MAX(C_ITEMPROD.QTITEMPROD / V_SOMAQITEMPROD),1) AS VRFATOCONV,
                               NVL(SUM(VRBRUTITEM),0), NVL(SUM(VRCONTITEM),0), NVL(SUM(VRENCARGOIMPXML), 0)
@@ -6069,9 +6079,13 @@ BEGIN
                         WHERE CDFILIAL    = C_ITEMNOTAFISC.CDFILIALIT                                          AND
                               NRLANCTONF  = C_ITEMNOTAFISC.NRLANCTONFIT                                        AND
                               CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
-                              ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
+                             ((NRSEQITPROD = C_ITEMPROD.NRSEQITPRODORIG AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                             (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                             (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
+                             (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));                             
+                              /*ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
                               (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
-                              (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                              (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));*/
                     Exception
                        When No_Data_Found Then
                           V_VRFATOCONV := 1; V_VRBRUTO := 0; V_VRCONTAB := 0;
@@ -6089,9 +6103,13 @@ BEGIN
                        WHERE CDFILIAL    = P_FILIAL                                                           AND
                              NRLANCTONF  = P_LANCTONF                                                         AND
                              CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
-                             ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
+                            ((NRSEQITPROD = C_ITEMPROD.NRSEQITPROD AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                             (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                             (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
+                             (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));
+                             /*ROUND(VRUNITITEM, V_NRDECITOTANF) = ROUND(C_ITEMPROD.VRUNITITEM, V_NRDECITOTANF) AND
                              (NVL(NRLOTEESTQ, ' ') = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                       AND
-                             (NVL(NRSUBLOTE , ' ') = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                             (NVL(NRSUBLOTE , ' ') = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));*/
                     END IF;
 
                     IF V_CDINTEGRACAO IS NOT NULL THEN
@@ -6290,9 +6308,14 @@ BEGIN
                    WHERE CDFILIAL    = C_ITEMNOTAFISC.CDFILIALIT                                          AND
                          NRLANCTONF  = C_ITEMNOTAFISC.NRLANCTONFIT                                        AND
                          CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
+                         ((NRSEQITPROD = C_ITEMPROD.NRSEQITPRODORIG AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                         (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                         (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
+                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));
+                         /*NRSEQITPROD = C_ITEMPROD.NRSEQITPRODORIG                                     AND
                          ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
                          (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
-                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));*/
 
                   SELECT NVL(MAX(C_ITEMPROD.QTITEMPROD / V_SOMAQITEMPROD),1) AS VRFATOCONV,
                          NVL(SUM(VRBRUTITEM),0), NVL(SUM(VRCONTITEM),0), NVL(SUM(VRENCARGOIMPXML), 0)
@@ -6301,9 +6324,11 @@ BEGIN
                    WHERE CDFILIAL    = C_ITEMNOTAFISC.CDFILIALIT                                          AND
                          NRLANCTONF  = C_ITEMNOTAFISC.NRLANCTONFIT                                        AND
                          CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
-                         ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                         ((NRSEQITPROD = C_ITEMPROD.NRSEQITPRODORIG AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                         (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
                          (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
-                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));
+                         
                Exception
                   When No_Data_Found Then
                      V_VRFATOCONV := 1; V_VRBRUTO := 0; V_VRCONTAB := 0;
@@ -6337,9 +6362,14 @@ BEGIN
                   WHERE CDFILIAL    = P_FILIAL                                                           AND
                         NRLANCTONF  = P_LANCTONF                                                         AND
                         CDPRODUTO   = C_ITEMPROD.CDPRODUTO                                               AND
+                        ((NRSEQITPROD = C_ITEMPROD.NRSEQITPROD AND C_ITEMPROD.NRSEQITPRODORIG IS NOT NULL) OR
+                         (C_ITEMPROD.NRSEQITPRODORIG IS NULL AND ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
+                         (NVL(NRLOTEESTQ, ' ')  = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                      AND
+                         (NVL(NRSUBLOTE , ' ')  = (NVL(C_ITEMPROD.NRSUBLOTE , ' '))) ));
+                        /*(NRSEQITPROD = C_ITEMPROD.NRSEQITPROD AND NRSEQITPRODORIG IS NOT NULL)           AND
                         ROUND(VRUNITITEM, 5) = ROUND(C_ITEMPROD.VRUNITITEM, 5) AND
                         (NVL(NRLOTEESTQ, ' ') = (NVL(C_ITEMPROD.NRLOTEESTQ, ' ')))                       AND
-                        (NVL(NRSUBLOTE , ' ') = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));
+                        (NVL(NRSUBLOTE , ' ') = (NVL(C_ITEMPROD.NRSUBLOTE , ' ')));*/
                END IF;
 
                IF V_CDINTEGRACAO IS NOT NULL THEN
@@ -6972,7 +7002,7 @@ BEGIN
                                        END;
                                     END;
                                  END IF;
-                                 
+
                                  /*198639, 200299*/
                                  IF V_VRBASEICMS > 0 THEN
                                     DELETE ALIQTEMP
@@ -7032,7 +7062,7 @@ BEGIN
                                      WHERE NRALIQTEMP = V_ALIQTEMP;
                                  END IF;
                                  /*198639, 200299*/
-                                 
+
                                  V_IMPOSTOIT := V_IMPOSTOIT - V_VRIMPOSTOST;
 
                                  IF V_IMPOSTOIT < 0 THEN
@@ -8161,7 +8191,7 @@ BEGIN
                                      WHERE NRALIQTEMP = V_ALIQTEMP;
                                  END IF;
                                  /*198639, 200299*/
-                                 
+
                                  V_IMPOSTOIT := V_IMPOSTOIT - V_VRIMPOSTOST;
 
                                  IF V_IMPOSTOIT < 0 THEN
@@ -9245,7 +9275,7 @@ BEGIN
                FROM ITEMPRODUTO IP
                WHERE (IP.CDFILIAL   = P_FILIAL)   AND
                      (IP.NRLANCTONF = P_LANCTONF);
-   
+
                IF NOT V_TOTAPRODENCA IS NULL THEN
                   FOR C_ATUAVRCONT IN (SELECT IP.NRSEQITPROD, (VRTOTAITEM - VRDESCITEM) AS VRLIQUIDO
                                        FROM ITEMPRODUTO IP
@@ -9259,13 +9289,13 @@ BEGIN
                      ELSE
                         V_VRBRUTO := 0;
                      END IF;
-   
+
                      IF (C_ITEMENCARGO.CDCTBLSAIDEN IS NULL) THEN
                         V_VRCONTAB := V_VRBRUTO;
                      ELSE
                         V_VRCONTAB := 0;
                      END IF;
-   
+
                      IF ((V_IDSISTEMA = 'VND') OR (V_IDSISTEMA = 'PDV')) AND (NVL(V_IDORIGDESTNF, 'C') <> 'L') THEN
                         UPDATE ITEMPRODUTO
                         SET VRBRUTITEM = TRUNC(VRBRUTITEM + (V_VRBRUTO  * (VRTOTAITEM - VRDESCITEM)),2),
@@ -9300,7 +9330,7 @@ BEGIN
                                                         (BC.CDIMPOSTO IN (SELECT B.CDIMPOSTO
                                                                           FROM BASECALC B
                                                                           WHERE B.CDENCARGO = C_ITEMENCARGO.CDENCARGO))))) LOOP
-   
+
                   IF (C_ITEMENCARGO.IDENCARGO = w_A) THEN
                      V_VRBRUTO  := (C_ITEMENCARGO.VRITEMENCA/V_TOTAPRODENCA);
                   ELSIF (C_ITEMENCARGO.IDENCARGO = w_D) THEN
@@ -9308,7 +9338,7 @@ BEGIN
                   ELSE
                      V_VRBRUTO := 0;
                   END IF;
-   
+
                   IF (C_ITEMENCARGO.CDCTBLSAIDEN IS NULL) THEN
                      V_VRCONTAB := V_VRBRUTO;
                   ELSE
@@ -9369,7 +9399,7 @@ BEGIN
                        FROM ITEMPRODUTO IP
                       WHERE IP.CDFILIAL   = P_FILIAL
                         AND IP.NRLANCTONF = P_LANCTONF;
-   
+
                      IF (V_TOTAPRODENCA <> 0) THEN
                         IF (NVL(C_ITEMPROIMPOS.IDTRATIMPOBCENC, C_ITEMENCARGO.IDENCARGO) = w_A) THEN
                            V_PRODUENCARGO := + (C_ITEMENCARGO.VRITEMENCA/V_TOTAPRENIMPO)*C_ITEMPROIMPOS.VRLIQUIDO;
@@ -9379,7 +9409,7 @@ BEGIN
                            V_PRODUENCARGO := 0;
                         END IF;
                      END IF;
-   
+
                      V_IDVRIMPSTRIB := NULL;
                      BEGIN
                         SELECT CASE COUNT(*) WHEN 0 THEN 'M' ELSE 'R' END
@@ -9404,7 +9434,7 @@ BEGIN
                         V_PRODUENCARGO :=  (V_PRODUENCARGO * V_TAXABASECALC); /*Calcular o valor do encargo retirando redução da base para no update abaixo utilize o valor adicionando a majoração*/
                         V_TAXABASECALC := 1 + (C_ITEMPROIMPOS.VRPERREDBCIT)/100;
                         V_TAXAALIQUOTA := (C_ITEMPROIMPOS.VRALIQITEM/100);
-   
+
                         SELECT NVL(MAX(IDVRIMPSTRIB), 'N')
                           INTO V_IDVRIMPSTRIB
                           FROM ITEMPROIMPOS I, IMPOSTO II
@@ -9413,7 +9443,7 @@ BEGIN
                            AND (NRSEQITPROD  = C_ITEMPROIMPOS.NRSEQITPROD)
                            AND (INSTR(V_CDIMPOSTRIB,II.CDIMPOSTO||'_') > 0)
                            AND (I.CDIMPOSTO = II.CDIMPOSTO);
-   
+
                         IF (C_ITEMPROIMPOS.IDTRIMPSTII <> w_1) AND (NVL(V_IDVRIMPSTRIB,w_N) = w_S) THEN
                            Begin
                               SELECT NVL(MAX(VRIMPOSTOIT),0)
@@ -9440,7 +9470,7 @@ BEGIN
                      LOOP
                         V_ICMS := 'S';
                      END LOOP;
-   
+
                      UPDATE ITEMPROIMPOS
                         SET VRCONTITIMP  = VRCONTITIMP  + (V_PRODUENCARGO * V_TAXABASECALC),
                             VRBASECALCIT = VRBASECALCIT + ((V_PRODUENCARGO * V_TAXABASECALC) / (1 - ((C_ITEMPROIMPOS.VRALIQINTEDEST + C_ITEMPROIMPOS.VRALIQFCP) / 100))),
@@ -12889,7 +12919,7 @@ BEGIN
         FROM ITEMPRODUTO
        WHERE CDFILIAL = P_FILIAL
          AND NRLANCTONF = P_LANCTONF;
-   
+
       IF V_DIFEVRBRUTO <> 0 THEN
          UPDATE ITEMPRODUTO
             SET VRBRUTITEM = VRBRUTITEM + V_DIFEVRBRUTO
@@ -12905,7 +12935,7 @@ BEGIN
                                                      WHERE I.CDFILIAL     = P_FILIAL
                                                        AND I.NRLANCTONF   = P_LANCTONF
                                                        AND (NVL(I.IDPRODBONIF, 'N') = 'N')));
-   
+
       END IF;
    END IF;   
 
@@ -12981,7 +13011,7 @@ BEGIN
         FROM ITEMPRODUTO
        WHERE (NRLANCTONF   = P_LANCTONF)
          AND (CDFILIAL     = P_FILIAL)
-         AND (NRSEQITPROD  = C_ITEM.NRSEQITPROD);
+         AND (NRSEQITPROD  = C_ITEM.NRSEQITPROD);      
 
       IF (NVL(V_IDUTDESCICMS, 'N') <> 'S') THEN
          IF (C_ITEM.VRBRUTITEM > 0) THEN
@@ -13440,7 +13470,7 @@ BEGIN
                                     IT.VRADICALIQFECP,
                                     NRITPROIMPOS)
          LOOP
-            
+
             V_ICMS := 'N';
             FOR C_ICMS IN (SELECT CDIMPOSTO
                              FROM IMPOSTONFE N, IMPOSTO I
@@ -14780,7 +14810,7 @@ BEGIN
    V_STRVRADICALIQFECP := NULL;
    V_STRVRADICFECP := NULL;
 
-   
+
    /* GRAVA INFORMAÇÕES DO IPI DEVOLVIDO DO PRODUTO */
    FOR C_IPIDEVOL IN (SELECT I.NRSEQITPROD, II.VRIMPOSTOIT, I.DSINFADICPROD
                         FROM ITEMPRODUTO I, ITEMPROIMPOS II,
@@ -14889,7 +14919,7 @@ BEGIN
 
       /* INSERIDO POR LUCIANA CORREA PARA O SISTEMA DE PDV */
       IF (V_IDSISTEMA <> w_VMN) THEN
-         
+
          BEGIN
             SELECT NRCTRLMOVEST, CDFILIALENTR, NRLANESTENTR
               INTO V_NRCTRLMOVEST, V_CDFILIALENTR, V_NRLANESTENTR
@@ -14902,13 +14932,13 @@ BEGIN
                V_NRCTRLMOVEST := NULL;
                V_NRLANESTENTR := NULL;
          END;
-         
+
          IF V_NRCTRLMOVEST IS NOT NULL THEN
             DELETE 
               FROM CTRLMOVIESTQ
              WHERE CDFILIAL = V_CDFILIEMIT
                AND NRCTRLMOVEST = V_NRCTRLMOVEST;
-            
+
             DELETE 
               FROM ITLANCTOEST
              WHERE CDFILIAL = V_CDFILIALENTR
@@ -14920,7 +14950,7 @@ BEGIN
                AND NRLANCESTQ = V_NRLANESTENTR;
 
          END IF;
-         
+
          SELECT COUNT(*)
          INTO   V_COUNT
          FROM LANCTOESTOQ L, NOTAFISCAL N
@@ -15850,7 +15880,7 @@ BEGIN
     WHERE CDFILIAL = P_FILIAL
       AND NRLANCTONF = P_LANCTONF
       AND DSDADOADIC LIKE 'ICMS cobrado anteriormente por substituição tributária: BC %';
-    
+
      SELECT SUM(VRBCITENTR), SUM(VRIMPITENTR)
        INTO V_VRBCITENTR, V_VRIMPITENTR
        FROM ITEMPRODUTO IP, ITEMPROIMPOS II
@@ -15860,7 +15890,7 @@ BEGIN
         AND IP.CDFILIAL = P_FILIAL
         AND IP.NRLANCTONF = P_LANCTONF
         AND SUBSTR(IP.CDSITUTRIBPR, 2, 2) = '60';
-      
+
       IF V_VRIMPITENTR <> 0 THEN
            SELECT COUNT(*)
              INTO V_EXISTDSDADOSADIC
@@ -15969,7 +15999,7 @@ BEGIN
                            AND II.VRIMPOSTOIT > 0)
          LOOP
             V_DSPRODEMISIMP := V_DSPRODEMISIMP||'  '|| C_IMP.SGIMPOSTO|| ': R$'|| C_IMP.VRIMPOSTOITDESC; 
-              
+
             V_TOTIMPRET := V_TOTIMPRET + C_IMP.VRIMPOSTOIT;
          END LOOP;
          IF V_TOTIMPRET > 0 THEN
@@ -16015,7 +16045,7 @@ BEGIN
    V_BCICMSMONORET := 0;
    V_ICMSMONORET := 0;
    V_ALIQICMSMONORET := 0;
-   
+
    /*ICMS15*/
    SELECT SUM(VRBCMONO), SUM(VRICMSMONO), SUM(VRALIQMONO), SUM(VRICMSMONORET), SUM(VRALIQMONORET), SUM(VRBCMONORET)
      INTO V_BCICMSMONO, V_ICMSMONO, V_ALIQICMSMONO, V_ICMSMONORET, V_ALIQICMSMONORET, V_BCICMSMONORET
@@ -16078,7 +16108,7 @@ BEGIN
                      VALUES(P_FILIAL, P_LANCTONF, V_DADOADIC, 'ICMS monofásico sobre combustíveis diferido conforme Convênio ICMS 199/2022;');
       V_DADOADIC := LPAD(RTRIM(TO_CHAR(TO_NUMBER(V_DADOADIC) + 1)),3,0);
    END IF;
-   
+
    V_BCICMSMONO := 0;
    V_ICMSMONO := 0;
    V_ALIQICMSMONO := 0;
